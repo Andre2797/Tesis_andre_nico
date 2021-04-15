@@ -48,5 +48,78 @@ const andre ={
     },
     mascotas:['Tony','Max','Panda'],
 }; //object
+//acceder a las propiedades del objeto
 andre.nombre //Andrea
-const arregloNum=[] //object
+andre["nombre"]; //Andrea
+console.log(andre)
+andre.nombre="Guiomar"
+console.log(andre)
+//sueldo no exite
+andre.sueldo; //undefined -> no esta definido
+console.log(andre.sueldo)
+andre.sueldo= 1.2;
+console.log(andre.sueldo)
+
+//añadire nuevas llaves y valores
+andre["gastos"]=0.8;
+console.log(andre.gastos)
+
+// eliminar el nombre del objeto
+andre.nombre = undefined
+console.log(andre)
+console.log(Object.keys(andre))
+delete andre.nombre //eliminar la llave nombre
+console.log(andre)
+console.log(Object.keys(andre))
+
+//clase OBJECT
+//obtner llaves
+Object.keys(andre)
+//variable por valor y por referencia
+//lista de variabe por valor JS
+//number,string, boolean, undefined
+let edadandre=23
+let edadAndrea= edadandre
+
+console.log(edadAndrea)
+console.log(edadandre);
+edadandre= edadandre+1
+console.log(edadAndrea)
+console.log(edadandre);
+//lista de varibales por referencia JS
+// object, arreglos
+/*
+let rafael={
+   nombre: "Rafael"
+};
+let lennin = rafael
+console.log(rafael)
+console.log(lennin)
+
+lennin.nombre="leninn"
+console.log(rafael)
+console.log(lennin)
+
+delete rafael.nombre
+console.log(rafael)
+console.log(lennin)
+*/
+let rafael={
+   nombre: "Rafael"
+};
+//clonar el objeto o arreglo
+let lennin = Object.assign({},rafael)
+console.log(rafael)
+console.log(lennin)
+lennin.nombre="Lennin"
+delete rafael.nombre
+console.log(rafael)
+console.log(lennin)
+
+
+
+
+
+
+
+//const arregloNum=[] //object
