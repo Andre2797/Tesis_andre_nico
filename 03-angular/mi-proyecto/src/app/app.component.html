@@ -1,0 +1,109 @@
+<!--
+<h1>Lista de peliculas</h1>
+
+Directiva
+<p *ngFor="let numero of arregloNumeros">
+  {{numero}}
+</p>
+
+<p *ngIf="false">
+  OCULTO
+</p>
+<div *ngFor="let pelicula of arregloPeliculas">
+
+  <app-carta-pelicula
+    [urlImagen]="pelicula.url"
+    [descripcion]="pelicula.descripcio"
+    [nombreBoton]="pelicula.nombre"
+    (eventoDioClicEnBoton)="mensajeConsola($event)"
+    (eventoDioClicEnImagen)="mensajeConsola($event)"
+  >
+
+  </app-carta-pelicula>
+</div>
+
+<button (click)="crearUsuario()">
+  Crear Uusuario
+</button>
+
+
+<button (click)="habilitado=!habilitado">
+  {{habilitado ? 'Habilitado':'Desabilitado'}}
+</button>
+
+<app-carta-pelicula
+  *ngIf="habilitado"
+>
+
+
+</app-carta-pelicula>
+
+<div *ngFor="let usuario of arregloUusuarios">
+
+  {{usuario.nombre}}
+
+</div>
+-->
+<ul>
+  <li>
+    <a [routerLink]="['inicio']">
+      Ir Inicio
+    </a>
+  </li>
+  <li>
+    <a [routerLink]="['login']">
+      Ir Login
+    </a>
+  </li>
+  <li *ngIf="_autService.estaAutenticado">
+    <a [routerLink]="['usuario']">
+      Usuarios
+    </a>
+  </li>
+</ul>
+<button mat-button color="accent">Accentr</button>
+
+<button type="button" class="btn btn-outline-secondary mr-2" placement="top" ngbTooltip="Tooltip on top">
+  Tooltip on top
+</button>
+
+<p-button
+label="Hola desde Priemng"
+class="p-button-secondary"
+> </p-button>
+
+
+<router-outlet>
+
+</router-outlet>
+
+
+<!--
+
+<h1>Mi Aplicativo</h1>
+
+<h6>Titulo</h6>
+
+<p>parrafo</p>
+<ul>
+  <li>Papa</li>
+  <li>
+    Cebolla
+  </li>
+</ul>
+
+<ol>
+  <li>A</li>
+  <li>B</li>
+  <li>C</li>
+</ol>
+<img src="https://blog.masterbase.com/hs-fs/hubfs/iStock-529683884.jpg?width=2070&name=iStock-529683884.jpg" alt="">
+ ancla
+<a href="https://www.google.com.ec/maps">
+  Ir google maps
+</a>
+
+<button>
+  Mi primer boton
+</button>
+-->

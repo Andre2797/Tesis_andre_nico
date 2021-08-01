@@ -1,0 +1,24 @@
+
+
+
+
+
+
+
+
+{{_authService.estaAutenticado}}
+<form (ngSubmit)="revisarLogin
+(formularioLogin)" #formularioLogin="ngForm">
+
+
+
+
+  <label for="correoId">Correo:</label>
+  <input id="correoId" name="correo" [(ngModel)]="correoModelo" type="text">
+
+  <label for="cedulaId">Cedula:</label>
+  <input id="cedulaId" name="cedula" [(ngModel)]="cedulaModelo"type="text">
+  <button >
+    Logearse
+  </button>
+</form>
