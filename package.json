@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "add": "^2.0.6",
+    "dotenv": "^8.6.0",
+    "process-env": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
