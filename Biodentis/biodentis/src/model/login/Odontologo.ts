@@ -1,6 +1,6 @@
-'üse strict'
-const mongoose=require('mongoose');
-const Schema=mongoose.Schema;
+'use strict'
+import mongoose, { Schema } from 'mongoose';
+import * as Mongoose from "mongoose";
 const odoEsquema=new Schema({
 nombre:{
     type:String,
@@ -13,7 +13,7 @@ apellido:{
     max:30
 },
 fechaNacimiento:{
-    type:String,
+    type:Date,
     require:false,
     
 },
@@ -26,11 +26,14 @@ contrasenia:{
     type:String,
     require:true,
     min:8
-}
+},citas: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Cita'
+}],
 
 },
 {
     timestamps:true
 });
 
-module.exports = mongoose.model("Odontologo", odoEsquema);
+module.exports = Mongoose.model('Odontologo', odoEsquema);

@@ -1,26 +1,43 @@
 
 import { request, response } from "express";
+import mongoose, { Schema } from 'mongoose';
 'üse strict'
-const mongoose=require('mongoose');
 
-const esquema=require('../../model/login/Odontologo');
-const Odo=require('../../dao/login.dao');
+
+var Esquema=require('../../model/login/Odontologo');
+var EsquemaSucu=require('../../model/sucursales/sucursalesModel');
+var EsquemaCita=require('../../model/cita/citaModel');
 
  exports.createOdontolo = (req, res) => {
-     let newOdo = new esquema (req.body);
-
      
-     newOdo.save((err,odon) => {
-         if (err){
-             res.status(500).send(err);
-         }
-         res.status(201).json(odon);
-         mongoose.connection.close();
-     });
+    const odonew= new Esquema();
+    odonew.nombre=req.body.nombre;
+    odonew.apellido=req.body.apellido;
+    odonew.fechaNacimiento=Date.parse(req.body.fechaNacimiento);
+    odonew.correo=req.body.correo;
+    odonew.contrasenia=req.body.contrasenia;
+    odonew.sucursal=req.body.sucursal;
+    odonew.save().then((result)=>{
+        EsquemaSucu.findOne({nombre:odonew.sucursal},(err,sucu)=>{
+            if(sucu){
+                sucu.odontologos.push(odonew);
+                sucu.save();
+                res.json({ message: 'Odontologo creado con exito' });
+            }else{
+                res.status(500).json({ err});
+            }
+        })
+    }).catch((error) => {
+        res.status(500).json({ error });
+      });
+    
+    
+  
  };
 
+
 exports.loginOdontolo = (req, res) => {
-    esquema.findOne({correo:req.body.correo}, req.body, {new:false}, (err,odon)=>{
+    Esquema.findOne({correo:req.body.correo}, req.body, {new:false}, (err,odon)=>{
         if (err){
             res.status(500).send(err);
         }
@@ -37,8 +54,18 @@ exports.loginOdontolo = (req, res) => {
     }})
 
     };
+
+
+    exports.allodontologos=(req,res)=>{
+        Esquema.find({},function (err, odo){
+            EsquemaCita.populate(odo,{path:"citas"},function(err,odo){
+                res.status(200).send(odo);
+            })
+        })
+    };
+
     exports.cambioContraseñaOdontolo = (req, res) => {
-        esquema.findOneAndUpdate({_id:req.params.id}, req.body, {new:true}, (err,odon)=>{
+        Esquema.findOneAndUpdate({_id:req.params.id}, req.body, {new:true}, (err,odon)=>{
             if (err){
                 res.status(500).send(err);
             }
