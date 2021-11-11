@@ -32,20 +32,37 @@ const pacienteRoute=require('./routes/paciente/pacienteRoute');
 const diagnosticoRoute=require('./routes/diagnostico/diagnosticoRoute');
 const historiaClinicaRoute=require('./routes/historiaClinica/historiaClinicaRoute');
 const odontogramaRoute=require('./routes/odontograma/odontogramaRouter');
+const piezaRoute=require('./routes/odontograma/piezaRoute');
 const recetaRoute=require('./routes/receta/recetaRoute');
 const tratamientoRoute=require('./routes/tratamiento/tratamientoRoute');
 
-
+const cors= require('cors');
 const express = require('express');
 const bodyParse=require('body-parser');
 
 const app = express();
 
-app.use(bodyParse.urlencoded({extended:true}));
+app.use(bodyParse.urlencoded({extended:false}));
 app.use(bodyParse.json());
 
 const router = express.Router();
+
+app.use(cors());
+app.use(express.json());
+
+// Configurar cabeceras y cors
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
+
+
+
 app.use('/api',router);
+
 loginRoute(router);
 sucuRoute(router);
 citaRoute(router);
@@ -53,6 +70,7 @@ pacienteRoute(router);
 diagnosticoRoute(router);
 historiaClinicaRoute(router);
 odontogramaRoute(router);
+piezaRoute(router)
 recetaRoute(router);
 tratamientoRoute(router);
 

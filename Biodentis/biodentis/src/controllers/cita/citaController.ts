@@ -58,3 +58,28 @@ var EsquemaPaciente=require('../../model/paciente/pacienteModel');
   
  };
 
+ exports.cambioDatosCita= (req, res) => {
+    console.log(req.params.id);
+    Esquema.findOneAndUpdate({_id:req.params.id}, req.body, {new:true}, (err,pac)=>{
+        if (err){
+            res.status(500).send(err);
+        }
+        if(!pac) {
+            return response.status(404).send('Error al encontrar cita');
+        }else{
+            const fecha = Date.parse(req.body.fecha);
+            const hora=req.body.hora;
+            console.log(req.body);
+            
+            
+            if(fecha || hora){
+                res.status(201).json(pac);
+                
+            }else{
+                response.status(409).send('Error al actualizar cita');
+            }
+    }})
+
+    };
+
+

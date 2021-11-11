@@ -48,3 +48,27 @@ exports.pacientes = (req, res) => {
 
   };
 
+  exports.cambioDatos= (req, res) => {
+    console.log(req.params.id);
+    Esquema.findOneAndUpdate({_id:req.params.id}, req.body, {new:true}, (err,pac)=>{
+        if (err){
+            res.status(500).send(err);
+        }
+        if(!pac) {
+            return response.status(404).send('Error al encontrar paciente');
+        }else{
+            const direccion = req.body.direccion;
+            const celular=req.body.celular;
+            console.log(req.body);
+            
+            
+            if(direccion || celular){
+                res.status(201).json(pac);
+                
+            }else{
+                response.status(409).send('Error al actualizar datos');
+            }
+    }})
+
+    };
+

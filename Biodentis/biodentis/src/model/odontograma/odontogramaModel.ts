@@ -2,20 +2,12 @@
 import mongoose, { Schema } from 'mongoose';
 import * as Mongoose from "mongoose";
 const odontogramaEsquema=new Schema({
-hemiarcadaSuperiorDerecha:{
-pieza21:{
-zona:{
-    type:String,
-        require:true,
-        max:30,
-    diagPieza:{
-        type:String,
-        require:true,
-        max:30
-    }
-}
-}
-},
+
+
+piezas:[{
+    type: Schema.Types.ObjectId,
+    ref: 'Pieza'
+}],
 
 diagnostico: {
     type: Schema.Types.ObjectId,

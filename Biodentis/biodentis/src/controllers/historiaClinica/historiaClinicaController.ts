@@ -49,7 +49,7 @@ var paciente_id;
 
  };
  exports.historias = (req, res) => {
-  Esquema.find({}).populate('recetas').populate('tratamientos').exec(function(err,historia){
+  Esquema.find({}).populate('recetas').populate('tratamientos').populate('paciente').exec(function(err,historia){
     res.status(200).send(historia);
   });
 

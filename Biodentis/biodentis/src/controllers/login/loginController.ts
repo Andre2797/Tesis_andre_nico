@@ -7,7 +7,7 @@ import mongoose, { Schema } from 'mongoose';
 var Esquema=require('../../model/login/Odontologo');
 var EsquemaSucu=require('../../model/sucursales/sucursalesModel');
 var EsquemaCita=require('../../model/cita/citaModel');
-
+var jwt=require("jsonwebtoken");
  exports.createOdontolo = (req, res) => {
      
     const odonew= new Esquema();
@@ -36,20 +36,24 @@ var EsquemaCita=require('../../model/cita/citaModel');
  };
 
 
-exports.loginOdontolo = (req, res) => {
-    Esquema.findOne({correo:req.body.correo}, req.body, {new:false}, (err,odon)=>{
+exports.loginOdontolo = async(req, res) => {
+    await Esquema.findOne({correo:req.body.correo}, req.body, {new:false}, (err,odon)=>{
+       console.log(req.body);
         if (err){
             res.status(500).send(err);
         }
         if(!odon) {
-            return response.status(404).send('Algo malo paso usuario');
+            console.log("NO encuntra correo")
+             res.status(404).send('Algo malo paso usuario');
         }else{
             const pass = req.body.contrasenia;
             if(pass){
-                res.status(201).json(odon);
-                mongoose.connection.close();
+               
+               var token= jwt.sign({_id:odon.id},"secretKey");
+               res.status(201).json({token});
+             
             }else{
-                response.status(409).send('Algo malo paso contra');
+                res.status(404).send('Algo malo paso contra');
             }
     }})
 
@@ -75,9 +79,7 @@ exports.loginOdontolo = (req, res) => {
                 const pass = req.body.contrasenia;
                 if(pass){
                     res.status(201).json(odon);
-                    mongoose.connection.close();
-                }else{
-                    response.status(409).send('Error en las credenciales');
+                    
                 }
         }})
     
