@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 //Components
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from "./auth.guard";
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
 },
 {
   path:'home',
-  component:HomeComponent
+  component:HomeComponent,
+  canActivate:[AuthGuard]
 },
 ];
 

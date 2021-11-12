@@ -24,4 +24,12 @@ export class AuthService {
     return this.http.post(this.URL + '/login', user, {headers: headers});
     
   }
+
+  loggedIn(){
+    if(localStorage.getItem('token')){
+      return true
+    }else{
+      return false
+    }
+  }
 }

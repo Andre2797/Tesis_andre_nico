@@ -65,7 +65,7 @@ li {
 }
 label.title {
 	font-size: 14px;
-	background: linear-gradient(#27A3BD, #27A3BD);
+	background: linear-gradient(#27A3BD, #2f2f2f);
 	padding: 10px 15px;
 	cursor: pointer;
   transition: all .25s;
