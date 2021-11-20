@@ -4,16 +4,17 @@ import mongoose, { Schema } from 'mongoose';
 var Esquema=require('../../model/odontograma/odontogramaModel');
 
 
- exports.createOdontograma = async (req, res) => {
+ exports.createOdontograma = (req, res) => {
     console.log(req.body);
     const odontogramanew= new Esquema();
-    odontogramanew.pieza=req.body.pieza;
+    
     odontogramanew.diagnostico=req.body.diagnostico;
+    odontogramanew.pieza=req.body.pieza;
    
   
     console.log(req.body);
      
-    await odontogramanew.save().then((result)=>{
+   odontogramanew.save().then((result)=>{
       if(result){
         
 

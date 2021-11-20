@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OdontogramaService } from 'src/app/services/odontograma.service';
 import { PacienteService } from 'src/app/services/paciente.service';
 
 @Component({
@@ -35,10 +36,16 @@ export class HistoriaClinicaComponent implements OnInit {
     paciente:''
   }
 
+  public odontograma={
+    diagnostico:'',
+    pieza:[]
+    
+  }
+
   
   
   public edited = true;
-  constructor(private pacienteService:PacienteService
+  constructor(private pacienteService:PacienteService,private odoService:OdontogramaService
     ,private router:Router) {
       this.pacienteService.numHistorias()
   .subscribe(
@@ -99,6 +106,9 @@ newHiatoria(){
   .subscribe(
     res=>{
       console.log(res)
+      this.odoService.crearOdontograma(this.odontograma).subscribe(
+        res2=> {console.log(res2)},err2=>console.log(err2)
+      )
       this.router.navigate(['/odontograma'])
       
       
@@ -107,21 +117,6 @@ newHiatoria(){
   )
 }
 
-numHistorias(){
 
-  this.pacienteService.numHistorias()
-  .subscribe(
-    res=>{
-      console.log(res)
-      
-      let app =(<HTMLInputElement>document.getElementById('input')).value
-      app=String(res);
-      
-      
-    },
-    err=>console.log(err)
-  )
-
-}
 
 }
