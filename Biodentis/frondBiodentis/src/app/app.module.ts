@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from "./auth.guard";
+import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
+import { OdontogramaComponent } from './components/odontograma/odontograma.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    HistoriaClinicaComponent,
+    OdontogramaComponent
    
   ],
   imports: [

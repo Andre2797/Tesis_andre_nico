@@ -17,6 +17,8 @@ var EsquemaDiagnostico=require('../../model/diagnostico/diagnosticoModel');
     pacientenew.direccion=req.body.direccion;
     pacientenew.sexo=req.body.sexo;
     pacientenew.edad=req.body.edad;
+    pacientenew.fechaNacimiento=req.body.fechaNacimiento;
+    pacientenew.correo=req.body.correo;
    
  
     pacientenew.save().then((result)=>{
