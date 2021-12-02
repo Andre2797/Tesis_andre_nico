@@ -1,0 +1,32 @@
+<html>
+    
+<div class="wrapper fadeInDown">
+    
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Iniciar Sesión </h2>
+      
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="https://media.istockphoto.com/vectors/icon-of-tooth-dentist-symbol-logo-of-teeth-graphic-shape-for-dental-vector-id1294412708?b=1&k=20&m=1294412708&s=170667a&w=0&h=TFiONzIWRC2PFFcrZOw8jNkbQ6Q85zVxjBWDoZyJlZs=" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form class="custom-form" method="post">
+        <input type="email"   id="login" class="fadeIn second" name="correo"  placeholder="Correo Electrónico" [(ngModel)]="user.correo">
+        <input type="password"  id="password" class="fadeIn third" name="contrasenia"  placeholder="Contraseña" [(ngModel)]="user.contrasenia">
+        <input type="submit" class="fadeIn fourth" value="Iniciar sesión" (click)="iniciarSesion()">
+        
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Olvide mi Contraseña</a>
+      </div>
+  
+    </div>
+
+  </div>
+
+  </html>

@@ -1,0 +1,255 @@
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <img class="biodentis" src="../../../assets/img/logo_biodentis.PNG">
+            <h2 style="margin-left: 50px; margin-right: 100px;font-weight: bold">CENTRO ODONTOLÓGICO &nbsp;</h2>
+            <img style=" width:50%;
+            margin-left:170px;" src="../../../assets/img/biodentis_preview_rev_1.png" />
+            <h3 style="margin-left:120px; font-family: Georgia;">HISTORIA CLINICA ODONTOLÓGICA</h3>
+        </div>
+
+        <div class="input-group input-group-icon" style="margin-top:40px; float:right;">
+
+
+            <div class="input-icono">
+                <input type="number" name="input" readonly placeholder="NHCL" id="input" />
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <form>
+
+        <div class="row" style="margin: auto; height: 100%; margin-top: -20px;">
+
+
+
+            <div class="circle">
+
+                <p>Datos Personales</p>
+
+            </div>
+            <div class="circleform">
+                <div class="input-group input-group-icon">
+                    <label class="label_form">NOMBRES</label>
+                    <br>
+                    <br>
+                    <input class="input_form" type="text" [(ngModel)]="paciente.nombre" name="nombre" />
+                    <br>
+                   
+                </div>
+                <div class="input-group input-group-icon">
+                    <label class="label_form">APELLIDOS</label>
+                    <br>
+                    <br>
+                    <input class="input_form" type="text" [(ngModel)]="paciente.apellido" name="apellido" />
+                </div>
+                <div class="input-group input-group-icon">
+                    <label class="label_form">NÚMERO DE CEDULA</label>
+                    <br>
+                    <br>
+                    <input class="input_form" type="text" [(ngModel)]="paciente.numCedula" name="numCedula" />
+
+                </div>
+
+                <div class="input-group input-group-icon">
+
+                    <div class="input-group input-group-icon  ">
+                        <label class="label_form">SEXO</label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="rad" value="F" [(ngModel)]="paciente.sexo">
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Femenino</div>
+                        </label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="rad" value="M" [(ngModel)]="paciente.sexo">
+                            <div class="rad-design"></div>
+                            <div class="rad-text">Masculino</div>
+                        </label>
+
+
+                    </div>
+
+                </div>
+                <div class="input-group input-group-icon">
+                    <div class="input-group input-group-icon col-6md">
+                        <label class="label_form">FECHA DE NACIMEINTO</label>
+                        <br>
+                        <br>
+                        <input class="input_form" type="date" [(ngModel)]="paciente.fechaNacimiento"
+                            name="fechaNacimiento" />
+                        <br>
+                        <br>
+                        <label class="label_form">EDAD</label>
+                        <br>
+                        <br>
+                        <input class="input_form" readonly type="number" [value]="CalculateAge()"
+                            [(ngModel)]="paciente.edad" name="edad" />
+                    </div>
+                </div>
+
+                <div class="input-group input-group-icon">
+
+                    <label class="label_form">MAIL</label>
+                    <br>
+                    <br>
+                    <input class="input_form_mail" type="email" [(ngModel)]="paciente.correo" name="correo" />
+                    <br>
+                    <br>
+                    <label class="label_form">CELULAR</label>
+                    <br>
+                    <br>
+                    <input class="input_form_cel" type="text" [(ngModel)]="paciente.celular" name="celuar" />
+                </div>
+                <div class="input-group input-group-icon">
+                    <label class="label_form">DOMIICILIO</label>
+                    <br>
+                    <br>
+                    <input class="input_form" type="text" [(ngModel)]="paciente.direccion" name="direccion" />
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="row" style="margin: auto; height: 100%;" [hidden]="!edited">
+            <button type="button" href="" class="boton_1" style="margin-left:500px; margin-top: 10px;"(click)="newPaciente()">Siguiente>></button>
+           >
+        </div>
+
+        <hr>
+        <div class="row" style="margin: auto; height: 100%" [hidden]="edited">
+
+            <div class="circle">
+
+                <p>Signos Vitales</p>
+
+            </div>
+            <div class="circleform_signos">
+                <div class="input-group input-group-icon">
+                    <label class="label_form">PRESIÓN ARTERIAL</label>
+                    <br>
+                    <br>
+                    <input class="input_form" type="text" [(ngModel)]="historia.presion" name="presion" />
+
+                </div>
+                <div class="input-group input-group-icon">
+
+                    <label class="label_form">Peso</label>
+                    <br>
+                    <br>
+                    <input class="input_form" type="text" [(ngModel)]="historia.peso" name="peso" />
+                </div>
+                <div class="input-group input-group-icon">
+
+                    <label class="label_form">TEMPERATURA</label>
+                    <br>
+                    <br>
+                    <input class="input_form" type="text" [(ngModel)]="historia.temperatura" name="temperatura" />
+                </div>
+
+            </div>
+
+        </div>
+        <hr>
+        <div class="row" style="margin: auto; height: 100%" [hidden]="edited">
+
+            <div class="circle">
+
+                <p>Antecedentes Médicos</p>
+
+            </div>
+            <div class="circleform_questions">
+                <div class="input-group input-group-icon">
+
+                    <div class="input-group input-group-icon">
+
+                        <div class="input-group input-group-icon  ">
+                            <label class="label_form">SE ENCUNTRA BAJO TRATAMIENTO MÉDICO?</label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="tratamientoMedico" value="S"
+                                    [(ngModel)]="historia.tratamientoMedico">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">SI</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="tratamientoMedico" value="N"
+                                    [(ngModel)]="historia.tratamientoMedico">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">NO</div>
+                            </label>
+                            <label class="label_form">COMPLICACIONES POR ANESTESIA EN LA BOCA?</label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="anestesia" value="S"
+                                    [(ngModel)]="historia.anestesia">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">SI</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="anestesia" value="N"
+                                    [(ngModel)]="historia.anestesia">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">NO</div>
+                            </label>
+
+
+                        </div>
+
+
+
+                        <label class="label_form">ALÉRGICO A ALGÚN MEDICAMENTO?</label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="alergia" value="S" [(ngModel)]="historia.alergia">
+                            <div class="rad-design"></div>
+                            <div class="rad-text">SI</div>
+                        </label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="alergia" value="N" [(ngModel)]="historia.alergia">
+                            <div class="rad-design"></div>
+                            <div class="rad-text">NO</div>
+                        </label>
+
+                        <label class="label_form">ES USTED PROPENSO A HEMORRAGIAS?</label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="hemoragia" value="S" [(ngModel)]="historia.hemoragia">
+                            <div class="rad-design"></div>
+                            <div class="rad-text">SI</div>
+                        </label>
+
+                        <label class="rad-label">
+                            <input type="radio" class="rad-input" name="hemoragia" value="N" [(ngModel)]="historia.hemoragia">
+                            <div class="rad-design"></div>
+                            <div class="rad-text">NO</div>
+                        </label>
+
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div>
+            <hr>
+            <div class="row" style="margin: auto; height: 100%;">
+                <button   href="" class="boton_1" style="margin-right:100px; margin-top: 10px;" (click)="newHiatoria()">GUARDAR</button>
+                <button href="" class="boton_1" style="margin-left:100px; margin-top: 10px;">CANCELAR</button>
+            </div>
+
+
+
+        </div>
+
+    </form>
+</div>
