@@ -2,10 +2,10 @@
     <div class="row">
         <div class="row">
             <img class="biodentis" src="../../../assets/img/logo_biodentis.PNG">
-            <h2 style="margin-left: 50px; margin-right: 100px;font-weight: bold">CENTRO ODONTOLÓGICO &nbsp;</h2>
+            <h2 style="margin-left: 120px; margin-right: 120px;font-weight: bold">CENTRO ODONTOLÓGICO &nbsp;</h2>
             <img style=" width:50%;
             margin-left:170px;" src="../../../assets/img/biodentis_preview_rev_1.png" />
-            <h3 style="margin-left:120px; font-family: Georgia;">HISTORIA CLINICA ODONTOLÓGICA</h3>
+            <h3 style="margin-left:auto; font-family: Georgia; margin-right: auto;">HISTORIA CLINICA ODONTOLÓGICA</h3>
         </div>
 
         <div class="input-group input-group-icon" style="margin-top:40px; float:right;">
@@ -18,9 +18,9 @@
 
     </div>
     <br>
-    <form>
+    <form class="custom-form" [formGroup]="pacienteForm">
 
-        <div class="row" style="margin: auto; height: 100%; margin-top: -20px;">
+        <div class="row" style="margin: auto; height: auto; margin-top: -20px;">
 
 
 
@@ -29,28 +29,72 @@
                 <p>Datos Personales</p>
 
             </div>
-            <div class="circleform">
-                <div class="input-group input-group-icon">
+            <div class="circleform ">
+                <div class="input-group input-group-icon ">
                     <label class="label_form">NOMBRES</label>
                     <br>
                     <br>
-                    <input class="input_form" type="text" [(ngModel)]="paciente.nombre" name="nombre" />
+                    <input class="input_form form-control " type="text" formControlName="nombre" name="nombre"
+                        required />
+
+                    <div *ngIf="pacienteForm.controls['nombre'].touched && pacienteForm.controls['nombre'].invalid">
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['nombre'].errors?.required">
+                            ******* Ingrese los campos obligatorios ******
+                        </small>
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['nombre'].errors?.['maxlength']">
+                            ***** (Debe tener como máximo 25 caracteres) ****
+                        </small>
+                    </div>
                     <br>
-                   
+                    <br>
+
                 </div>
+                <br>
                 <div class="input-group input-group-icon">
                     <label class="label_form">APELLIDOS</label>
                     <br>
                     <br>
-                    <input class="input_form" type="text" [(ngModel)]="paciente.apellido" name="apellido" />
+                    <input class="input_form form-control" type="text" formControlName="apellido" name="apellido"
+                        required />
+                    <div *ngIf="pacienteForm.controls['apellido'].touched && pacienteForm.controls['apellido'].invalid">
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['apellido'].errors?.required">
+                            ******* Ingrese los campos obligatorios ******
+                        </small>
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['apellido'].errors?.['maxlength']">
+                            ***** (Debe tener como máximo 30 caracteres) ****
+                        </small>
+                    </div>
+                    <br>
+                    <br>
                 </div>
+                <br>
                 <div class="input-group input-group-icon">
                     <label class="label_form">NÚMERO DE CEDULA</label>
                     <br>
                     <br>
-                    <input class="input_form" type="text" [(ngModel)]="paciente.numCedula" name="numCedula" />
+                    <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"
+                        required />
+
+                    <div
+                        *ngIf="pacienteForm.controls['numCedula'].touched && pacienteForm.controls['numCedula'].invalid">
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['numCedula'].errors?.required">
+                            ******* Ingrese los campos obligatorios ******
+                        </small>
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['numCedula'].errors?.['maxlength']">
+                            ***** (Debe tener como máximo 10 caracteres) ****
+                        </small>
+                    </div>
+                    <br>
+                    <br>
 
                 </div>
+                <br>
 
                 <div class="input-group input-group-icon">
 
@@ -58,68 +102,166 @@
                         <label class="label_form">SEXO</label>
 
                         <label class="rad-label">
-                            <input type="radio" class="rad-input" name="rad" value="F" [(ngModel)]="paciente.sexo">
+                            <input type="radio" class="rad-input" name="sexo" value="F" formControlName="sexo">
                             <div class="rad-design"></div>
                             <div class="rad-text">Femenino</div>
                         </label>
 
                         <label class="rad-label">
-                            <input type="radio" class="rad-input" name="rad" value="M" [(ngModel)]="paciente.sexo">
+                            <input type="radio" class="rad-input" name="sexo" value="M" formControlName="sexo">
                             <div class="rad-design"></div>
                             <div class="rad-text">Masculino</div>
                         </label>
 
 
                     </div>
+                    <br>
+                    <br>
 
                 </div>
-                <div class="input-group input-group-icon">
-                    <div class="input-group input-group-icon col-6md">
-                        <label class="label_form">FECHA DE NACIMEINTO</label>
+
+                <div class="input-group input-group-icon col-6md">
+
+                    <label class="label_form">FECHA DE NACIMEINTO</label>
+                    <br>
+                    <br>
+                    <!--   <input class="input_form_date form-control" type="date" formControlName="fechaNacimiento" id='fecha'
+                        name="fechaNacimiento" required /> -->
+                    <div>
+                        <mat-form-field class="input_form_date " appearance="fill">
+                            <br>
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [max]="maxDate" [matDatepicker]="picker" class="form-control"
+                                formControlName="fechaNacimiento" id='fecha' name="fechaNacimiento" required />
+
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            
+                            <div class="input-group input-group-icon"
+                            *ngIf="pacienteForm.controls['fechaNacimiento'].touched && pacienteForm.controls['fechaNacimiento'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red; margin-top: -120px;"
+                                *ngIf="pacienteForm.controls['fechaNacimiento'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                        </div>
+                            <mat-datepicker #picker panelClass="datepickerOne"></mat-datepicker>
+
+
+                        </mat-form-field>
+
                         <br>
-                        <br>
-                        <input class="input_form" type="date" [(ngModel)]="paciente.fechaNacimiento"
-                            name="fechaNacimiento" />
-                        <br>
-                        <br>
-                        <label class="label_form">EDAD</label>
-                        <br>
-                        <br>
-                        <input class="input_form" readonly type="number" [value]="CalculateAge()"
-                            [(ngModel)]="paciente.edad" name="edad" />
                     </div>
+                  
+
+
+                    <br>
+                    <br>
+
+
+                    <br>
+
+                    <br>
+                    <br>
+
+                    <label class="label_form">EDAD</label>
+                    <br>
+                    <br>
+                    <input class="input_form_edad form-control" readonly type="number" id='edad_input' value=""
+                        formControlName="edad" name="edad" (click)="CalculateAge()" required />
+                    <div class="input-group input-group-icon"
+                        *ngIf="pacienteForm.controls['edad'].touched && pacienteForm.controls['edad'].invalid">
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['edad'].errors?.required">
+                            ******* Ingrese los campos obligatorios ******
+                        </small>
+                    </div>
+
+                    <br>
                 </div>
+
+
 
                 <div class="input-group input-group-icon">
 
                     <label class="label_form">MAIL</label>
                     <br>
                     <br>
-                    <input class="input_form_mail" type="email" [(ngModel)]="paciente.correo" name="correo" />
+                    <input class="input_form form-control" type="email" formControlName="correo" name="correo"
+                        required />
+                    <br>
+                    <div class="input-group input-group-icon"
+                        *ngIf="pacienteForm.controls['correo'].touched && pacienteForm.controls['correo'].invalid">
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['correo'].errors?.required">
+                            ******* Ingrese los campos obligatorios ******
+                        </small>
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['correo'].errors?.email">
+                            ***** Correo invalido ****
+                        </small>
+                    </div>
                     <br>
                     <br>
-                    <label class="label_form">CELULAR</label>
+
+                </div>
+
+
+                <div class="input-group input-group-icon">
+                    <label class="label_form ">CELULAR</label>
                     <br>
                     <br>
-                    <input class="input_form_cel" type="text" [(ngModel)]="paciente.celular" name="celuar" />
+                    <input class="input_form  form-control" type="text" formControlName="celular" name="celuar"
+                        required />
+                    <br>
+                    <div class="input-group input-group-icon"
+                        *ngIf="pacienteForm.controls['celular'].touched && pacienteForm.controls['celular'].invalid">
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['celular'].errors?.required">
+                            ******* Ingrese los campos obligatorios ******
+                        </small>
+
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['celular'].errors?.['maxlength']">
+                            ***** (Debe tener como máximo 10 caracteres) ****
+                        </small>
+                    </div>
+                    <br>
+                    <br>
                 </div>
                 <div class="input-group input-group-icon">
                     <label class="label_form">DOMIICILIO</label>
                     <br>
                     <br>
-                    <input class="input_form" type="text" [(ngModel)]="paciente.direccion" name="direccion" />
+                    <input class="input_form form-control" type="text" formControlName="direccion" name="direccion"
+                        required />
+                    <br>
+                    <div
+                        *ngIf="pacienteForm.controls['direccion'].touched && pacienteForm.controls['direccion'].invalid">
+                        <small style="font-weight: bold; font-family: monospace; color: red;"
+                            *ngIf="pacienteForm.controls['direccion'].errors?.required">
+                            ******* Ingrese los campos obligatorios ******
+                        </small>
+                    </div>
+                    <br>
                 </div>
             </div>
+
         </div>
-        
-        <hr>
-        <div class="row" style="margin: auto; height: 100%;" [hidden]="!edited">
-            <button type="button" href="" class="boton_1" style="margin-left:500px; margin-top: 10px;"(click)="newPaciente()">Siguiente>></button>
-           >
+        <div class="row" style="margin: auto; height: 100%;" *ngIf="edited">
+            <button type="button" href="" class="boton_1" style="margin-left:500px; margin-top: 10px;"
+                (click)="newPaciente()">Siguiente>></button>
+
         </div>
 
         <hr>
-        <div class="row" style="margin: auto; height: 100%" [hidden]="edited">
+
+        <br>
+
+
+    </form>
+
+
+    <form class="custom-form" [formGroup]="historiaForm">
+        <div class="row" style="margin: auto; height: 100%" *ngIf="!edited">
 
             <div class="circle">
 
@@ -127,33 +269,42 @@
 
             </div>
             <div class="circleform_signos">
+                <br>
                 <div class="input-group input-group-icon">
                     <label class="label_form">PRESIÓN ARTERIAL</label>
                     <br>
                     <br>
-                    <input class="input_form" type="text" [(ngModel)]="historia.presion" name="presion" />
+                    <input class="input_form form-control" type="text" formControlName="presion" name="presion" />
+                    <label class="label_form">mmHg</label>
 
                 </div>
+                <br>
                 <div class="input-group input-group-icon">
 
-                    <label class="label_form">Peso</label>
+                    <label class="label_form">PESO</label>
                     <br>
                     <br>
-                    <input class="input_form" type="text" [(ngModel)]="historia.peso" name="peso" />
+                    <input class="input_form form-control" type="text" formControlName="peso" name="peso" /> <label
+                        class="label_form">KG</label>
                 </div>
+                <br>
                 <div class="input-group input-group-icon">
 
                     <label class="label_form">TEMPERATURA</label>
                     <br>
                     <br>
-                    <input class="input_form" type="text" [(ngModel)]="historia.temperatura" name="temperatura" />
+                    <input class="input_form form-control" type="text" formControlName="temperatura"
+                        name="temperatura" /> <label class="label_form">°C</label>
                 </div>
+                <br>
 
             </div>
+            <br>
 
         </div>
         <hr>
-        <div class="row" style="margin: auto; height: 100%" [hidden]="edited">
+        <br>
+        <div class="row" style="margin: auto; height: 100%" *ngIf="!edited">
 
             <div class="circle">
 
@@ -170,14 +321,14 @@
 
                             <label class="rad-label">
                                 <input type="radio" class="rad-input" name="tratamientoMedico" value="S"
-                                    [(ngModel)]="historia.tratamientoMedico">
+                                    formControlName="tratamientoMedico">
                                 <div class="rad-design"></div>
                                 <div class="rad-text">SI</div>
                             </label>
 
                             <label class="rad-label">
                                 <input type="radio" class="rad-input" name="tratamientoMedico" value="N"
-                                    [(ngModel)]="historia.tratamientoMedico">
+                                    formControlName="tratamientoMedico">
                                 <div class="rad-design"></div>
                                 <div class="rad-text">NO</div>
                             </label>
@@ -185,14 +336,14 @@
 
                             <label class="rad-label">
                                 <input type="radio" class="rad-input" name="anestesia" value="S"
-                                    [(ngModel)]="historia.anestesia">
+                                    formControlName="anestesia">
                                 <div class="rad-design"></div>
                                 <div class="rad-text">SI</div>
                             </label>
 
                             <label class="rad-label">
                                 <input type="radio" class="rad-input" name="anestesia" value="N"
-                                    [(ngModel)]="historia.anestesia">
+                                    formControlName="anestesia">
                                 <div class="rad-design"></div>
                                 <div class="rad-text">NO</div>
                             </label>
@@ -205,13 +356,13 @@
                         <label class="label_form">ALÉRGICO A ALGÚN MEDICAMENTO?</label>
 
                         <label class="rad-label">
-                            <input type="radio" class="rad-input" name="alergia" value="S" [(ngModel)]="historia.alergia">
+                            <input type="radio" class="rad-input" name="alergia" value="S" formControlName="alergia">
                             <div class="rad-design"></div>
                             <div class="rad-text">SI</div>
                         </label>
 
                         <label class="rad-label">
-                            <input type="radio" class="rad-input" name="alergia" value="N" [(ngModel)]="historia.alergia">
+                            <input type="radio" class="rad-input" name="alergia" value="N" formControlName="alergia">
                             <div class="rad-design"></div>
                             <div class="rad-text">NO</div>
                         </label>
@@ -219,13 +370,15 @@
                         <label class="label_form">ES USTED PROPENSO A HEMORRAGIAS?</label>
 
                         <label class="rad-label">
-                            <input type="radio" class="rad-input" name="hemoragia" value="S" [(ngModel)]="historia.hemoragia">
+                            <input type="radio" class="rad-input" name="hemoragia" value="S"
+                                formControlName="hemoragia">
                             <div class="rad-design"></div>
                             <div class="rad-text">SI</div>
                         </label>
 
                         <label class="rad-label">
-                            <input type="radio" class="rad-input" name="hemoragia" value="N" [(ngModel)]="historia.hemoragia">
+                            <input type="radio" class="rad-input" name="hemoragia" value="N"
+                                formControlName="hemoragia">
                             <div class="rad-design"></div>
                             <div class="rad-text">NO</div>
                         </label>
@@ -243,7 +396,8 @@
             </div>
             <hr>
             <div class="row" style="margin: auto; height: 100%;">
-                <button   href="" class="boton_1" style="margin-right:100px; margin-top: 10px;" (click)="newHiatoria()">GUARDAR</button>
+                <button href="" class="boton_1" style="margin-right:100px; margin-top: 10px;"
+                    (click)="newHiatoria()">GUARDAR</button>
                 <button href="" class="boton_1" style="margin-left:100px; margin-top: 10px;">CANCELAR</button>
             </div>
 
