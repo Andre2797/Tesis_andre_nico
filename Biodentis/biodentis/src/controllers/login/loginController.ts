@@ -8,7 +8,7 @@ var Esquema=require('../../model/login/Odontologo');
 var EsquemaSucu=require('../../model/sucursales/sucursalesModel');
 var EsquemaCita=require('../../model/cita/citaModel');
 var jwt=require("jsonwebtoken");
- exports.createOdontolo = (req, res) => {
+ exports.createOdontolo = async(req, res) => {
      
     const odonew= new Esquema();
     odonew.nombre=req.body.nombre;
@@ -17,8 +17,8 @@ var jwt=require("jsonwebtoken");
     odonew.correo=req.body.correo;
     odonew.contrasenia=req.body.contrasenia;
     odonew.sucursal=req.body.sucursal;
-    odonew.save().then((result)=>{
-        EsquemaSucu.findOne({nombre:odonew.sucursal},(err,sucu)=>{
+    await odonew.save().then(async (result)=>{
+        await  EsquemaSucu.findOne({nombre:odonew.sucursal},(err,sucu)=>{
             if(sucu){
                 sucu.odontologos.push(odonew);
                 sucu.save();
@@ -37,16 +37,17 @@ var jwt=require("jsonwebtoken");
 
 
 exports.loginOdontolo = async(req, res) => {
-    await Esquema.findOne({correo:req.body.correo}, req.body, {new:false}, (err,odon)=>{
+    await Esquema.findOne({correo:req.body.correo,contrasenia:req.body.contrasenia}, req.body, {new:false}, (err,odon)=>{
        console.log(req.body);
         if (err){
             res.status(500).send(err);
         }
         if(!odon) {
-            console.log("NO encuntra correo")
+            console.log("NO encuntra el USUARIO")
              res.status(404).send('Algo malo paso usuario');
         }else{
             const pass = req.body.contrasenia;
+            console.log(odon)
             if(pass){
                
                var token= jwt.sign({_id:odon.id},"secretKey");
@@ -60,21 +61,44 @@ exports.loginOdontolo = async(req, res) => {
     };
 
 
-    exports.allodontologos=(req,res)=>{
-        Esquema.find({},function (err, odo){
+    exports.allodontologos=async(req,res)=>{
+        await   Esquema.find({},function (err, odo){
             EsquemaCita.populate(odo,{path:"citas"},function(err,odo){
                 res.status(200).send(odo);
             })
         })
     };
 
-    exports.cambioContraseñaOdontolo = (req, res) => {
-        Esquema.findOneAndUpdate({_id:req.params.id}, req.body, {new:true}, (err,odon)=>{
+
+    exports.cambioEstado=async(req,res)=>{
+        console.log(req.body)
+        const odonew= new Esquema();
+        odonew.correo=req.body.correo;
+        console.log(odonew.correo);
+        await Esquema.findOneAndUpdate({correo:odonew.correo}, {estado:'bloqueado'},(err,odon)=>{
             if (err){
                 res.status(500).send(err);
             }
             if(!odon) {
-                return response.status(404).send('Error en las credenciales');
+                
+                 res.status(404).send('Error al encontrar el usuario');
+            }else{
+               
+            console.log("usuario bloqueado");
+            res.status(201).json(odon);
+                    
+                
+        }})
+    };
+
+
+    exports.cambioContraseñaOdontolo = async (req, res) => {
+        await   Esquema.findOneAndUpdate({_id:req.params.id}, req.body, {new:true}, (err,odon)=>{
+            if (err){
+                res.status(500).send(err);
+            }
+            if(!odon) {
+                response.status(404).send('Error en las credenciales');
             }else{
                 const pass = req.body.contrasenia;
                 if(pass){

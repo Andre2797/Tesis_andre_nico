@@ -25,6 +25,16 @@ export class AuthService {
     
   }
 
+  userBlock(correo:any){
+    
+    console.log(correo);
+
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.put(this.URL + '/cambioEstado', correo, {headers: headers});
+
+  }
+
   loggedIn(){
     if(localStorage.getItem('token')){
       return true

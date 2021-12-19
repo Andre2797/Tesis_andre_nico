@@ -265,3 +265,17 @@ input:placeholder {
 * {
   box-sizing: border-box;
 }
+form.ng-submitted input.ng-invalid{
+  border-color: #FA787E;
+}
+form input.ng-invalid.ng-touched {
+  border-color: #FA787E;
+}
+input.ng-invalid.ng-touched {
+  border-color: #FA787E;
+  border-width: 2px;
+  border-style: solid;
+}
+input.ng-valid {
+  background-color: lightgreen;
+}

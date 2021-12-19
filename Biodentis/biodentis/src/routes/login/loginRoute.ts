@@ -5,6 +5,7 @@ module.exports = (router) =>{
     router.post('/login', Odontologo.loginOdontolo);
     router.get('/odos',Odontologo.allodontologos);
     router.put('/actulizaContrasenia/:id', Odontologo.cambioContraseñaOdontolo);
+    router.put('/cambioEstado', Odontologo.cambioEstado);
 
 
 }

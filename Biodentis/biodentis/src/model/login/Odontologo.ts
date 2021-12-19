@@ -26,6 +26,9 @@ contrasenia:{
     type:String,
     require:true,
     min:8
+},estado:{
+    type:String,
+    default: 'activo'
 },citas: [{
     type: Schema.Types.ObjectId,
     ref: 'Cita'

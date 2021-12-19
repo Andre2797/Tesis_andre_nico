@@ -8,6 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from "./auth.guard";
 import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
 import { OdontogramaComponent } from './components/odontograma/odontograma.component';
+import { TablaHistoriasClinicasComponent } from './components/tabla-historias-clinicas/tabla-historias-clinicas.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,17 @@ const routes: Routes = [
   component:OdontogramaComponent,
   canActivate:[AuthGuard]
 },
+{
+  path:'tabla-Historias-Clinicas',
+  component:TablaHistoriasClinicasComponent,
+  canActivate:[AuthGuard]
+},
+{
+  path:'menunav',
+  component:MenuComponent,
+  canActivate:[AuthGuard]
+},
+
 ];
 
 @NgModule({
