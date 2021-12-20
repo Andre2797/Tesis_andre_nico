@@ -18,10 +18,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { TablaHistoriasClinicasComponent } from './components/tabla-historias-clinicas/tabla-historias-clinicas.component';
 import { MenuComponent } from './components/menu/menu.component';
-
-
-
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +28,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 
 
@@ -43,6 +42,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     OdontogramaComponent,
     TablaHistoriasClinicasComponent,
     MenuComponent,
+    NavbarComponent,
     
 
   ],

@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const itensProcedimento = [{
         nome: 'Cariado',
         cor: '#ff0000',
-        letra: ''
+        letra: '-'
     }, {
         nome: 'Obturado',
         cor: '#0000ff',
-        letra: ''
+        letra: '-'
     }, {
         nome: 'Exodoncia Realizada',
         cor: '#0000ff',

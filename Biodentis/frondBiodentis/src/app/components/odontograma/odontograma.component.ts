@@ -12,4 +12,6 @@ export class OdontogramaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+ 
+
 }

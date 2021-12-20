@@ -4,45 +4,12 @@
 		<div class="row">
 			<div class="col-12 mt-2">
 				<div class="btn-group" role="group">
-					<input type="radio" class="btn-check" name="ferramenta" id="mouse" autocomplete="off" checked>
-					<label class="btn btn-secondary" for="mouse"><i class="fas fa-mouse-pointer"></i></label>
-
-					<input class="btn-check" type="radio" name="ferramenta" id="pincel" value="option1">
-					<label class="btn btn-secondary" for="pincel"><i class="fas fa-pencil-alt"></i></label>
-
+					
 					<input class="btn-check" type="radio" name="ferramenta" id="borracha" value="option2">
-					<label class="btn btn-secondary" for="borracha"><i class="fas fa-eraser"></i></label>
+					<button  class="btn btn-secondary" for="borracha" ><i class="fas fa-eraser"></i></button>
+					<button type="button" class="btn btn-secondary" id="saveBtn" ><i class="fas fa-save"></i></button>
 
 				</div>
-				<div class="btn-group " role="group">
-					<button id="configBtn" type="button" class="btn btn-secondary dropdown-toggle"
-						data-bs-toggle="dropdown" aria-expanded="false">
-						<i class="fas fa-cog"></i>
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<li style="margin: 5px;">
-							<label for="customRange2" class="form-label">Tamaño</label>
-							<input type="range" class="form-range" min="1" max="5" id="tamanhoPincel">
-						</li>
-						<li style="margin: 5px;">
-							<label for="customRange2" class="form-label">Color</label>
-							<input type="color" id="corPincel" class="form-control form-control-color" value="#563d7c"
-								title="Choose your color">
-						</li>
-						<!--
-						<li style="margin: 5px;">
-                            <label for="customRange2" class="form-label">Texto</label>
-                            <input type="color" id="corPincel" class="form-control form-control-color" value="#563d7c" title="Choose your color">
-                        </li>
-					-->
-						<li style="margin: 5px;">
-							<button id="limparDesenho" type="button" class="btn btn-secondary">
-								Limpar desenhos
-							</button>
-						</li>
-					</ul>
-				</div>
-				<button type="button" class="btn btn-secondary" id="saveBtn"><i class="fas fa-save"></i></button>
 			</div>
 		</div>
 	</div>

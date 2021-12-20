@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('desenho', camadaPincel.toDataURL())
     }
 
-    const limparDesenhos = () => {
+    limparDesenhos.onclick = (event) => {
         contexto.clearRect(0, 0, camadaPincel.width, camadaPincel.height);
     }
 

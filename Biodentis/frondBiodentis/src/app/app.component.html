@@ -67,6 +67,32 @@ BIODENTIS
 
 
     <mat-sidenav-content> -->
-        <router-outlet></router-outlet>
-    <!-- </mat-sidenav-content>
+<!-- <router-outlet></router-outlet> -->
+<!-- </mat-sidenav-content>
 </mat-sidenav-container> -->
+<mat-toolbar class="menuColor">
+    <span>BIODENTIS</span>
+    <div class="spacer"></div>
+    <a  mat-button routerLink="/home"><mat-icon>home</mat-icon>
+        <span>Home</span></a>
+    
+
+    <div class="dropdown">
+        <button class="dropbtn"> <mat-icon>person</mat-icon>
+            Pacientes</button>
+        <div class="dropdown-content">
+            <a routerLink="/historia"><mat-icon>add_circle</mat-icon>
+                <span> Nuevo Paciente</span>  </a>
+            <a routerLink="/tabla-Historias-Clinicas"><mat-icon>library_books</mat-icon>
+                Chequeo Odontologico</a>
+        </div>
+    </div>
+
+    <a href="" mat-button routerLink="/home"><mat-icon>calendar_today</mat-icon>
+        <span>Citas</span></a>
+
+    <a href="" mat-raised-button color="accent">Sign Up</a>
+</mat-toolbar>
+
+
+<router-outlet></router-outlet>
