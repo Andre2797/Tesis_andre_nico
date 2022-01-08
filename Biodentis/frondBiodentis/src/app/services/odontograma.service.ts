@@ -19,4 +19,11 @@ export class OdontogramaService {
     return this.http.post(this.URL + '/crearOdontograma', odontograma, {headers: headers});
     
   }
+
+  crearDiagnostico(odontograma: any): Observable<any> {
+    console.log(odontograma)
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this.http.post(this.URL + '/crearDiagnostico', odontograma, {headers: headers});
+  }
+  
 }
