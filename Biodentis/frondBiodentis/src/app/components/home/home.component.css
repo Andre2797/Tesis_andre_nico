@@ -29,6 +29,8 @@ main {
 	background-color: #fff;
 	overflow: auto;
 	padding: 40px;
+	
+	margin-right: 10%;
 }
 h1 {
 	font-weight: bold;

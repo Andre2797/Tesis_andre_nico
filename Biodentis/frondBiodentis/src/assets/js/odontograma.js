@@ -140,7 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (procedimento === undefined) procedimentos.push(this.criaObjeto())
                 else procedimentos[procedimentos.indexOf(procedimento)] = this.criaObjeto()
                 storage.save(procedimentos)
+               
             }
+           
         }
 
         remover() {
@@ -1064,9 +1066,11 @@ document.addEventListener('DOMContentLoaded', () => {
             procedimento.informacoesAdicionais = document.querySelector("#informacoesAdicionais").value
 
             procedimento.salvar()
+            
 
             pintarFace(contexto2, procedimento, 'black', procedimento.cor, procedimento.letra)
             atualizaTabela()
+           
         }
 
         procedimentos = storage.fetch()

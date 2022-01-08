@@ -29,6 +29,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -68,6 +70,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatExpansionModule,
     MatTableModule,
     FontAwesomeModule,
+    NgbModule,
+    NgxPaginationModule
+   
    
   ],
   providers: [
