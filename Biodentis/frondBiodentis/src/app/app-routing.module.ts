@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 //Components
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -10,6 +9,8 @@ import { HistoriaClinicaComponent } from './components/historia-clinica/historia
 import { OdontogramaComponent } from './components/odontograma/odontograma.component';
 import { TablaHistoriasClinicasComponent } from './components/tabla-historias-clinicas/tabla-historias-clinicas.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { CitaComponent } from './components/cita/cita.component';
+
 
 const routes: Routes = [
   {
@@ -44,6 +45,11 @@ const routes: Routes = [
 {
   path:'menunav',
   component:MenuComponent,
+  canActivate:[AuthGuard]
+},
+{
+  path:'crearCita',
+  component:CitaComponent,
   canActivate:[AuthGuard]
 },
 

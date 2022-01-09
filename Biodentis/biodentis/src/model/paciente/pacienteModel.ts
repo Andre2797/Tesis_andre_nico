@@ -37,10 +37,7 @@ direccion:{
     require:false,
     min:8
 },
-citas: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Cita'
-}],
+
 diagnosticos: [{
     type: Schema.Types.ObjectId,
     ref: 'Diagnostico'

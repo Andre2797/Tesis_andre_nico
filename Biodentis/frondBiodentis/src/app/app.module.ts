@@ -29,6 +29,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CitaComponent } from './components/cita/cita.component';
 
 
 
@@ -43,6 +44,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     TablaHistoriasClinicasComponent,
     MenuComponent,
     NavbarComponent,
+    CitaComponent,
     
 
   ],
