@@ -11,6 +11,7 @@ import { OdontogramaComponent } from './components/odontograma/odontograma.compo
 import { TablaHistoriasClinicasComponent } from './components/tabla-historias-clinicas/tabla-historias-clinicas.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CitaComponent } from './components/cita/cita.component';
 
 const routes: Routes = [
   
@@ -44,6 +45,11 @@ const routes: Routes = [
       component:MenuComponent,
       canActivate:[AuthGuard]
     },
+    {
+      path:'crearCita',
+      component:CitaComponent,
+      canActivate:[AuthGuard]
+    }
   ]}
 
 

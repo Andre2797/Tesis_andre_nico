@@ -40,21 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    document.querySelector("#mouse").addEventListener('change', function() {
+    document.querySelector("#mouse").onclick = (event) => {
         usaPincel()
-    })
+    }
 
-    document.querySelector("#pincel").addEventListener('change', function() {
+    document.querySelector("#pincel").onclick = (event) => {
         usaPincel()
-    })
+    }
 
-    document.querySelector("#borracha").addEventListener('change', function() {
+    document.querySelector("#borrar2").onclick = (event) => {
+        alert("borrar")
         usaBorracha()
-    })
+    }
 
-    document.querySelector("#limparDesenho").addEventListener('click', function() {
+    document.querySelector("#limparDesenho").onclick = (event) => {
         limparDesenhos()
-    })
+    }
 
     const usaBorracha = () => {
         let ativo = false
@@ -138,14 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     ciclo()
 
-    document.querySelector("#tamanhoPincel").addEventListener('change', function() {
+    document.querySelector("#tamanhoPincel").onclick = (event) => {
         if (usaBorracha()) borracha.espessura = document.querySelector("#tamanhoPincel").value
         else pincel.espessura = document.querySelector("#tamanhoPincel").value
-    })
+    }
 
-    document.querySelector("#corPincel").addEventListener('change', function() {
+    document.querySelector("#corPincel").onclick = (event) => {
         pincel.cor = document.querySelector("#corPincel").value
-    })
+    }
 
     document.querySelector("#tamanhoPincel").dispatchEvent(new Event('change'))
     document.querySelector("#corPincel").dispatchEvent(new Event('change'))

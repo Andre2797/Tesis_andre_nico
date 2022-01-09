@@ -1,19 +1,13 @@
 <h1>Odontograma</h1>
+<div class="col-12 mt-1" style="margin-right: 20%;">			
+	<button  class="btn btn-secondary" for="borracha" id="borracha"><i class="fas fa-eraser">Limpiar</i></button>
+	<button type="button" class="btn btn-secondary" id="saveBtn"><i class="fas fa-save">Guardar Odontograma</i></button>
+	<button type="button" class="btn btn-secondary" id="regTrat" disabled><i class="fas fa-save">Registrar Tratamiento</i></button>
+</div>
 <div class="dark-mode">
-	<div id="control" class="container">
-		<div class="row">
-			<div class="col-12 mt-2">
-				<div class="btn-group" role="group">
-					
-					<input class="btn-check" type="radio" name="ferramenta" id="borracha" value="option2">
-					<button  class="btn btn-secondary" for="borracha" ><i class="fas fa-eraser"></i></button>
-					<button type="button" class="btn btn-secondary" id="saveBtn" ><i class="fas fa-save"></i></button>
-
-				</div>
-			</div>
-		</div>
-	</div>
 	
+	<div id="control" class="container">
+	</div>
 
 		<div id="canva-group">
 			<canvas id="camada1Odontograma"></canvas>
@@ -86,8 +80,8 @@
 						<div class="container">
 							<div class=" form-group d-inline   " style="text-align: center; box-sizing: revert;">
 								<a id="botaoAdicionar" class="form-control btn btn-secondary btnCorNovo "
-									style=" align-items: center;  margin-bottom: 15%; color: white;" >
-									<i class="fas fa-plus "> Guardar</i>
+									style=" align-items: center;  margin-bottom: 15%; color: white;">
+									<i class="fas fa-plus"> Guardar</i>
 								</a>
 
 							</div>

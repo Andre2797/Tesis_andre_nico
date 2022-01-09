@@ -27,10 +27,7 @@ var EsquemaPieza=require('../../model/odontograma/piezasModel');
           }else{
               res.status(500).json({ err });
           }
-      })
-      
-
-            
+      })            
        } else{
         res.status(400).json({ message: 'Error al crear Pieza'});
       }  

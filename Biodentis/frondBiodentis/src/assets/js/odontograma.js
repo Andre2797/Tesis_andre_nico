@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        limpar() {
+      limpar() {
             this.nome = null;
             this.cor = null;
             this.letra = null;
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.faceDente = null;
             this.informacoesAdicionais = null;
         }
-
+    
         salvar() {
             if (this.valido()) {
                 const procedimento = procedimentos.find(prc => prc.nome === this.nome && prc.numeroDente === this.numeroDente && prc.faceDente === this.faceDente)
@@ -394,7 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>
                         ${item.nome}
                     </td>
-                   
                     <td>
                         ${item.informacoesAdicionais || 'Ninguna Informacion adicional'}
                     </td>
@@ -500,7 +499,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param   {String} cor_interior            Parâmetro obrigatório
      */
     const pintarFace = (contexto, procedimento, cor_linha, cor_interior, letra) => {
-        console.log(letra)
         let numeroDente = getOrdemExibicaoPorNumeroDente(procedimento.numeroDente) - 1
         contexto.fillStyle = cor_interior
         contexto.strokeStyle = cor_linha
@@ -942,7 +940,6 @@ document.addEventListener('DOMContentLoaded', () => {
             lateral: tamanhoDente / 4,
             baseMenor: (tamanhoDente / 4) * 3
         }
-
         exibeMarcacoes()
         exibirEstrutura()
     }
@@ -1016,15 +1013,42 @@ document.addEventListener('DOMContentLoaded', () => {
         camadaPincel.width = window.innerWidth - 25
         const altura = (camadaPincel.width * alturaTelaReferencia) / tamanhoTelaReferencia
         camadaPincel.height = altura
-
         const dataImage = localStorage.getItem('desenho')
-
         desenho = new Image();
         desenho.src = dataImage;
         desenho.onload = function () {
             contextoPincel.clearRect(0, 0, camadaPincel.width, camadaPincel.height)
             contextoPincel.drawImage(desenho, 0, 0, camadaPincel.width, camadaPincel.height);
         }
+    }
+
+    const resizeCanvasPincel2 = () => {
+        camadaPincel.width = window.innerWidth - 25
+        const altura = (camadaPincel.width * alturaTelaReferencia) / tamanhoTelaReferencia
+        camadaPincel.height = altura
+        const dataImage = localStorage.removeItem('procedimentos')
+        desenho = new Image();
+        desenho.src = dataImage;
+        desenho.onload = function () {
+            contextoPincel.clearRect(0, 0, camadaPincel.width, camadaPincel.height)
+            contextoPincel.drawImage(desenho, 0, 0, camadaPincel.width, camadaPincel.height);
+        }
+    }
+
+    const saveOdonto = () => {
+        procedimientos = localStorage.getItem('procedimentos')
+        fetch('http://localhost:3000/crearDiagnostico', {
+        method: 'POST',
+        body: JSON.stringify(procedimentos.Array),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+    });
+        console.log(procedimentos)
     }
 
     /**
@@ -1064,13 +1088,24 @@ document.addEventListener('DOMContentLoaded', () => {
             procedimento.cor = document.querySelector("#cor").value
             procedimento.letra = document.querySelector("#letra").value
             procedimento.informacoesAdicionais = document.querySelector("#informacoesAdicionais").value
-
             procedimento.salvar()
+<<<<<<< HEAD
+=======
             
 
+>>>>>>> Desarrollo
             pintarFace(contexto2, procedimento, 'black', procedimento.cor, procedimento.letra)
             atualizaTabela()
            
+        }
+
+        document.querySelector('#borracha').onclick= () => {
+            resizeCanvasPincel2()
+            iniciaOdontograma()
+        }
+
+        document.querySelector('#saveBtn').onclick= () => {
+            saveOdonto()
         }
 
         procedimentos = storage.fetch()
@@ -1080,6 +1115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         resizeCanvas()
         resizeCanvasPincel()
+
     }
 
     /**

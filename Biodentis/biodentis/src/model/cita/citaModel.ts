@@ -16,7 +16,11 @@ motivo:{
     type:String,
     max:80,
     require:false,
-    
+},
+paciente:{
+    type: String,
+    max:100,
+    require:true
 }
 
 },

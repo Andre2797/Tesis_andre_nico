@@ -3,6 +3,42 @@ import mongoose, { Schema } from 'mongoose';
 'üse strict'
 
 
+<<<<<<< HEAD
+var Esquema=require('../../model/paciente/pacienteModel');
+var EsquemaHistoria=require('../../model/historiaClinica/historiaClinicaModel');
+var EsquemaDiagnostico=require('../../model/diagnostico/diagnosticoModel');
+
+ exports.createPaciente =async  (req, res) => {
+     
+    const pacientenew= new Esquema();
+    pacientenew.nombre=req.body.nombre;
+    pacientenew.apellido=req.body.apellido;
+    pacientenew.numCedula=req.body.numCedula;
+    pacientenew.celular=req.body.celular;
+    pacientenew.direccion=req.body.direccion;
+    pacientenew.sexo=req.body.sexo;
+    pacientenew.edad=req.body.edad;
+    pacientenew.fechaNacimiento=req.body.fechaNacimiento;
+    pacientenew.correo=req.body.correo;
+ 
+    pacientenew.save().then((result)=>{
+        if(result){
+          res.json({ message: 'Paciente creado con exito' });
+        }else{
+          res.status(400).json({ message: 'Error al crear Paciente'});
+        }     
+          })
+      .catch((error) => {
+          res.status(500).json({ error });
+        });
+ };
+
+exports.pacientes = (req, res) => {
+  Esquema.find({}).populate('diagnosticos').exec(function(err,pac){
+    res.status(200).send(pac);
+  });
+  };
+=======
 var Esquema = require('../../model/paciente/pacienteModel');
 var EsquemaHistoria = require('../../model/historiaClinica/historiaClinicaModel');
 var EsquemaDiagnostico = require('../../model/diagnostico/diagnosticoModel');
@@ -57,6 +93,7 @@ exports.pacientes = (req, res) => {
   });
 
 };
+>>>>>>> Desarrollo
 
 
 
@@ -102,6 +139,18 @@ exports.PaginacionPaciente = (req, res, next) => {
       Esquema.countDocuments((err, count) => { // count to calculate the number of pages
         if (err){ return next(err);
         }else{
+<<<<<<< HEAD
+            const direccion = req.body.direccion;
+            const celular=req.body.celular;
+            console.log(req.body);            
+            if(direccion || celular){
+                res.status(201).json(pac);
+            }else{
+                response.status(409).send('Error al actualizar datos');
+            }
+    }})
+    };
+=======
           res.json( {
             pac,
             current: page,
@@ -115,3 +164,4 @@ exports.PaginacionPaciente = (req, res, next) => {
     });
 };
 
+>>>>>>> Desarrollo
