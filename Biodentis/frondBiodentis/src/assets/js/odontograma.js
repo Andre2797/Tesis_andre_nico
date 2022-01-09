@@ -140,7 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (procedimento === undefined) procedimentos.push(this.criaObjeto())
                 else procedimentos[procedimentos.indexOf(procedimento)] = this.criaObjeto()
                 storage.save(procedimentos)
+               
             }
+           
         }
 
         remover() {
@@ -1087,8 +1089,14 @@ document.addEventListener('DOMContentLoaded', () => {
             procedimento.letra = document.querySelector("#letra").value
             procedimento.informacoesAdicionais = document.querySelector("#informacoesAdicionais").value
             procedimento.salvar()
+<<<<<<< HEAD
+=======
+            
+
+>>>>>>> Desarrollo
             pintarFace(contexto2, procedimento, 'black', procedimento.cor, procedimento.letra)
             atualizaTabela()
+           
         }
 
         document.querySelector('#borracha').onclick= () => {

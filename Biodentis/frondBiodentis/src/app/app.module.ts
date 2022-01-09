@@ -29,7 +29,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
+<<<<<<< HEAD
 import { CitaComponent } from './components/cita/cita.component';
+=======
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+>>>>>>> Desarrollo
 
 
 
@@ -70,6 +75,9 @@ import { CitaComponent } from './components/cita/cita.component';
     MatExpansionModule,
     MatTableModule,
     FontAwesomeModule,
+    NgbModule,
+    NgxPaginationModule
+   
    
   ],
   providers: [

@@ -17,6 +17,15 @@ export class PacienteService {
     
   }
 
+  actualizarPaciente(paciente: any, id:any): Observable<any> {
+    console.log(paciente);
+    console.log(id);
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.put(this.URL + '/cambioDatos/'+ id, paciente, {headers: headers});
+    
+  }
+
   crearHistoria(historia: any): Observable<any> {
     console.log(historia)
     
@@ -32,6 +41,17 @@ export class PacienteService {
      
     return this.http.get(this.URL + '/numhistorias', {headers: headers});
 
+  }
+
+  pacientes(page:number,num:number){
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.get(this.URL + '/pacientepag/'+page+'/'+num, {headers: headers});
+  }
+  paciente(id:String){
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.get(this.URL + '/paciente/'+id, {headers: headers});
   }
 
 

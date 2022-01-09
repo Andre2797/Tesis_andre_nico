@@ -18,6 +18,11 @@ numCedula:{
     require:true,
     
 },
+correo:{
+    type:String,
+    require:true,
+
+},
 celular:{
     type:String,
     max:10,
