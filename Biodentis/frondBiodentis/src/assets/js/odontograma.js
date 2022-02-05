@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-      limpar() {
+        limpar() {
             this.nome = null;
             this.cor = null;
             this.letra = null;
@@ -133,16 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
             this.faceDente = null;
             this.informacoesAdicionais = null;
         }
-    
+
         salvar() {
             if (this.valido()) {
                 const procedimento = procedimentos.find(prc => prc.nome === this.nome && prc.numeroDente === this.numeroDente && prc.faceDente === this.faceDente)
                 if (procedimento === undefined) procedimentos.push(this.criaObjeto())
                 else procedimentos[procedimentos.indexOf(procedimento)] = this.criaObjeto()
                 storage.save(procedimentos)
-               
+
             }
-           
+
         }
 
         remover() {
@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desenharQuadradoNumDente({
                 position: {
                     x: posicaoX,
-                    y: (posicoesPadrao.margemYEntreDentes / 5) +3
+                    y: (posicoesPadrao.margemYEntreDentes / 5) + 3
                 },
                 primeiroOuUltimoDente: index === 0 || index === 15,
                 numeroDente: numero,
@@ -1036,19 +1036,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const saveOdonto = () => {
-        procedimientos = localStorage.getItem('procedimentos')
-        fetch('http://localhost:3000/crearDiagnostico', {
-        method: 'POST',
-        body: JSON.stringify(procedimentos.Array),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8'
+        let bodyDig = {
+
         }
-    })
-    .then(response => response.json())
-    .then(json => {
-        console.log(json);
-    });
-        console.log(procedimentos)
+        let diagnostico = localStorage.getItem('procedimentos')
+
+        const querystring = window.location.href;
+        let result = querystring.split("/")
+
+
+        let id_pac = result[5]
+        let inputValue = document.getElementById("id_odo").value;
+        bodyDig.diagnostico = JSON.parse(diagnostico);
+        bodyDig.paciente = id_pac;
+        bodyDig.odontograma = inputValue;
+        console.log(bodyDig)
+        var request = new Request('http://localhost:3000/crearDiagnostico', {
+            method: 'POST',
+            
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bodyDig),
+        });
+        fetch(request).then(response => console.log(response))
+            ;
+        console.log(JSON.stringify(bodyDig))
     }
 
     /**
@@ -1089,22 +1102,17 @@ document.addEventListener('DOMContentLoaded', () => {
             procedimento.letra = document.querySelector("#letra").value
             procedimento.informacoesAdicionais = document.querySelector("#informacoesAdicionais").value
             procedimento.salvar()
-<<<<<<< HEAD
-=======
-            
-
->>>>>>> Desarrollo
             pintarFace(contexto2, procedimento, 'black', procedimento.cor, procedimento.letra)
             atualizaTabela()
-           
+
         }
 
-        document.querySelector('#borracha').onclick= () => {
+        document.querySelector('#borracha').onclick = () => {
             resizeCanvasPincel2()
             iniciaOdontograma()
         }
 
-        document.querySelector('#saveBtn').onclick= () => {
+        document.querySelector('#saveBtn').onclick = () => {
             saveOdonto()
         }
 

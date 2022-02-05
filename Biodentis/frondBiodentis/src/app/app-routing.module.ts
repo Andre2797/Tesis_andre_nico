@@ -31,13 +31,23 @@ const routes: Routes = [
       
     },
     {
-      path:'odontograma',
+      path:'historia',
+      component:HistoriaClinicaComponent,
+      
+    },
+    {
+      path:'odontograma/:id',
       component:OdontogramaComponent,
       
     },
     {
       path:'tabla-Historias-Clinicas',
       component:TablaHistoriasClinicasComponent,
+     
+    },
+    {
+      path:'cita',
+      component:CitaComponent,
      
     },
     {

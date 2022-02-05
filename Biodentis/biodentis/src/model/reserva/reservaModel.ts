@@ -1,7 +1,7 @@
 'use strict'
 import mongoose, { Schema } from 'mongoose';
 import * as Mongoose from "mongoose";
-const citaEsquema = new Schema({
+const reservaEsquema = new Schema({
     nombre: {
         type: String,
 
@@ -14,6 +14,7 @@ const citaEsquema = new Schema({
     },
     fecha: {
         type: Date,
+        
         require: true,
 
     },
@@ -29,4 +30,4 @@ const citaEsquema = new Schema({
         timestamps: true
     });
 
-module.exports = Mongoose.model('Cita', citaEsquema);
+module.exports = Mongoose.model('Reserva', reservaEsquema);

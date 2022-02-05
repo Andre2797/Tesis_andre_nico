@@ -7,22 +7,21 @@ var EsquemaPaciente = require('../../model/paciente/pacienteModel');
 var EsquemaOdontograma = require('../../model/diagnostico/diagnosticoModel');
 
 exports.creatediagnostico = async (req, res) => {
-    console.log(req.body);
+    console.log(req);
     const diagnosticonew = new Esquema();
     //diagnosticonew.fecha=Date.parse(req.body.fecha);
     diagnosticonew.diagnostico = req.body.diagnostico;
     //diagnosticonew.odontograma=req.body.odontograma;
     diagnosticonew.paciente = req.body.paciente;
-
-    EsquemaOdontograma.findOne({ odontograma: req.body.odontograma }, async (err, odon) => {
-        console.log(req.body.odontograma);
-        if (odon) {
-            diagnosticonew.odontograma = odon._id;
-            odon.diagnostico = diagnosticonew.odontograma;
-            odon.save();
+    console.log("odontogramaaaaaaaaqaaaaa")
+    console.log(req);
+  
+            diagnosticonew.odontograma =  req.body.odontograma;
+          
             await diagnosticonew.save().then((result) => {
 
-                EsquemaPaciente.findOne({ nombre: diagnosticonew.paciente }, (err, pac) => {
+                EsquemaPaciente.findOne({ _id: diagnosticonew.paciente }, (err, pac) => {
+                    console.log(diagnosticonew.paciente )
                     if (pac) {
                         pac.diagnosticos.push(diagnosticonew);
                         pac.save();
@@ -35,8 +34,6 @@ exports.creatediagnostico = async (req, res) => {
             }).catch((error) => {
                 res.status(500).json({ error });
             });
-        }else{
-            res.status(500).json({ err });
-        }
-    })
+      
+  
 };

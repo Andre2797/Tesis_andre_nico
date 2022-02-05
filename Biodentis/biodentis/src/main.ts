@@ -35,7 +35,7 @@ const odontogramaRoute=require('./routes/odontograma/odontogramaRouter');
 const piezaRoute=require('./routes/odontograma/piezaRoute');
 const recetaRoute=require('./routes/receta/recetaRoute');
 const tratamientoRoute=require('./routes/tratamiento/tratamientoRoute');
-
+const reservaRoute=require('./routes/reserva/reservaRoute');
 const cors= require('cors');
 const express = require('express');
 const bodyParse=require('body-parser');
@@ -73,7 +73,7 @@ odontogramaRoute(router);
 piezaRoute(router)
 recetaRoute(router);
 tratamientoRoute(router);
-
+reservaRoute(router);
 router.get('/', (request, response) => {
 
   response.send('Hello from home');

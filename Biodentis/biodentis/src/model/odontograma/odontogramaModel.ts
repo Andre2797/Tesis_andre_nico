@@ -4,17 +4,13 @@ import * as Mongoose from "mongoose";
 const odontogramaEsquema = new Schema({
 
 
-    diagnostico: {
-        type: String,
-        ref: 'Diagnostico'
-    },
-    pieza: [{
+    fechaOdonto: {
+        type: Date,
+        require:false,
+    },diagnostico: {
         type: Schema.Types.ObjectId,
-        ref: 'Pieza'
-    }],
-
-
-
+        ref: 'Diagnostico'
+    }
 },
     {
         timestamps: true

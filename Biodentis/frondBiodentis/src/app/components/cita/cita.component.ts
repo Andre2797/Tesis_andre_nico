@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import InteractionPlugin from '@fullcalendar/interaction';
+import esLocale from '@fullcalendar/core/locales/es';
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import $ from 'jquery';
+import 'bootstrap';
+import { Calendar } from '@fullcalendar/core';
+import { CitaService } from '../../services/cita.service';
 
 @Component({
   selector: 'app-cita',
@@ -7,9 +16,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CitaComponent implements OnInit {
 
-  constructor() { }
+
 
   ngOnInit(): void {
+
+
+
+
+  }
+  constructor(private citaService: CitaService) {
+
   }
 
+  listarCitas() {
+    this.citaService.listaCitas()
+      .subscribe(
+        res => {
+          console.log(res);
+
+        },
+        err => console.log(err)
+      )
+  }
+
+
 }
+

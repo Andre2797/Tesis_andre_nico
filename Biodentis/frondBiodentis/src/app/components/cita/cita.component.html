@@ -1,55 +1,145 @@
-<div class='signup-container'>
+<!--   <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
+<div class="container">
+  <div id='calendar'></div>
+</div>
 
-    <div class='right-container'>
-        <header>
-            <h1>Yay, puppies! Ensure your pup gets the best care!</h1>
 
-            <div class='set'>
-                <div class='pets-breed'>
-                    <label for='pets-breed'>Nombre</label>
-                    <input id='pets-breed' placeholder="Nombre" type='text'>
-                </div>
-                <div class='pets-birthday'>
-                    <label for='pets-birthday'>Apellido</label>
-                    <input id='pets-birthday' placeholder='Apellido' type='text'>
-                </div>
-            </div>
 
+
+
+
+<div class="modal fade right" id="modalAbandonedCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+     
+        <div class="modal-header bg-info">
+          <h5 class="modal-title" id="titulo">Registro de Eventos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+     
+    
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <form id="formulario" autocomplete="off">
+          <div class="modal-body">
             <div class="row">
-                <div>
-                    <div class='pets-gender'>
-                        <label for='pet-gender-female'>Sucursal</label>
-                        <div class='radio-container form-group'>
-                            <input checked='' id='pet-gender-female' name='pet-gender' type='radio' value='female'>
-                            <label for='pet-gender-female' style="width: 50%;">San Carlos</label>
-                            
-                            <input id='pet-gender-male' name='pet-gender' type='radio' value='male'>
-                            <label for='pet-gender-male'style="width: 50%;">Av.General Enriquez</label>
-                        </div>
-                    </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+
+                  <input id="title" type="text" class="form-control" name="title">
+                  <label for="title">Evento</label>
                 </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="nombre" name="nombre">
+                  <label for="" class="form-label">Nombre</label>
+
+                </div>
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="apellido" name="apellido">
+                  <label for="" class="form-label">Apellido</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="start" type="datetime-local" name="start">
+                  <label for="" class="form-label">Fecha</label>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="color" type="color" name="color">
+                  <label for="color" class="form-label">Color</label>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+            <button type="submit" class="btn btn-primary" id="btnAccion">Guardar</button>
+          </div>
+        </form>
+      </div>
 
 
-            <div class='pets-weight'>
-                <label for='pet-weight-0-25'>Weight</label>
-                <div class='radio-container'>
-                    <input checked='' id='pet-weight-0-25' name='pet-weight' type='radio' value='0-25'>
-                    <label for='pet-weight-0-25'>0-25 lbs</label>
-                    <input id='pet-weight-25-50' name='pet-weight' type='radio' value='25-50'>
-                    <label for='pet-weight-25-50'>25-50 lbs</label>
-                    <input id='pet-weight-50-100' name='pet-weight' type='radio' value='50-100'>
-                    <label for='pet-weight-50-100'>50-100 lbs</label>
-                    <input id='pet-weight-100-plus' name='pet-weight' type='radio' value='100+'>
-                    <label for='pet-weight-100-plus'>100+ lbs</label>
-                </div>
-            </div>
-        </header>
-        <footer>
-            <div class='set'>
-                <button id='back'>Back</button>
-                <button id='next'>Next</button>
-            </div>
-        </footer>
+
     </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+
+<div class="modal fade right" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+     
+        <div class="modal-header bg-info">
+          <h5 class="modal-title" id="tituloedit">Registro de Eventos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+     
+    
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <form id="formularioedit" autocomplete="off">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+
+                  <input id="titleedit" type="text" class="form-control" name="title">
+                  <label for="title">Evento</label>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="nombreedit" name="nombre">
+                  <label for="" class="form-label">Nombre</label>
+
+                </div>
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="apellidoedit" name="apellido">
+                  <label for="" class="form-label">Apellido</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="startedit" type="datetime-local" name="start">
+                  <label for="" class="form-label">Fecha</label>
+                </div>
+
+              </div>
+         
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="btnEliminaredit">Eliminar</button>
+            <button type="submit" class="btn btn-primary" id="btnAccionedit">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
 </div>

@@ -54,5 +54,11 @@ export class PacienteService {
     return this.http.get(this.URL + '/paciente/'+id, {headers: headers});
   }
 
+  buscarPaciente(namecedu:any): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.post(this.URL + '/buscarPaciente',namecedu,{headers: headers});
+  }
+
 
 }

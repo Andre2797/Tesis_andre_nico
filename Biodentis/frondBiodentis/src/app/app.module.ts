@@ -32,9 +32,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CitaComponent } from './components/cita/cita.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
-
+import { FullCalendarModule } from 'primeng/fullcalendar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -46,9 +45,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     TablaHistoriasClinicasComponent,
     MenuComponent,
     NavbarComponent,
-    CitaComponent,
-    
-
+    CitaComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +70,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatTableModule,
     FontAwesomeModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FullCalendarModule,
+    MatDialogModule
    
    
   ],

@@ -8,9 +8,8 @@ var Esquema=require('../../model/odontograma/odontogramaModel');
     console.log(req.body);
     const odontogramanew= new Esquema();
     
-    odontogramanew.diagnostico=req.body.diagnostico;
-    odontogramanew.pieza=req.body.pieza;
-   
+    odontogramanew.fechaOdonto=req.body.fechaOdonto;
+ 
   
     console.log(req.body);
      
@@ -18,7 +17,7 @@ var Esquema=require('../../model/odontograma/odontogramaModel');
       if(result){
         
 
-        res.json({ message: 'Odontograma creada con exito'}) 
+        res.json(result) 
       }  
         })
     .catch((error) => {

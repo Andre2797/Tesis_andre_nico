@@ -79,7 +79,11 @@ var EsquemaPaciente=require('../../model/paciente/pacienteModel');
                 response.status(409).send('Error al actualizar cita');
             }
     }})
-
+  
     };
 
-
+exports.listaCitas= (req, res) => {
+    Esquema.find({}).exec(function (err, citas) {
+        res.status(200).json(citas);
+      });
+    }
