@@ -5,6 +5,7 @@ module.exports = (router) =>{
     router.get('/reservas', Reserva.listaReservas);
     router.get('/reservaedit/:fecha',Reserva.reservaEdit);
     router.put('/cambioDatosReserva/:id',Reserva.cambioDatosReserva);
+    router.get('/eliminarReserva/:id',Reserva.reservaDelete);
 
 
 }

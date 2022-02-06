@@ -75,3 +75,17 @@ exports.reservaEdit = (req, res) => {
         return res.status(200).json(act); // en este ejemplo se envía el resultado
     });
 }
+
+exports.reservaDelete = (req, res) => {
+    Esquema.deleteOne({ _id: req.params.id }, function(err,data) {
+        if (!err) {
+            console.log(data);
+
+                console.log("member successfully deleted")
+                return res.status(200).json(data);
+        }
+        else {
+                console.log("error")
+        }
+    });
+}

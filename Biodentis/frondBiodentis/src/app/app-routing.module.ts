@@ -12,6 +12,7 @@ import { TablaHistoriasClinicasComponent } from './components/tabla-historias-cl
 import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CitaComponent } from './components/cita/cita.component';
+import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 
 const routes: Routes = [
   
@@ -48,6 +49,11 @@ const routes: Routes = [
     {
       path:'cita',
       component:CitaComponent,
+     
+    },
+    {
+      path:'seguimiento',
+      component:SeguimientoComponent,
      
     },
     {

@@ -14,14 +14,14 @@
     <!--Content-->
     <div class="modal-content">
       <!--Header-->
-     
-        <div class="modal-header bg-info">
-          <h5 class="modal-title" id="titulo">Registro de Eventos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <div class="modal-header bg-info">
+        <h5 class="modal-title" id="titulo">Registro de Eventos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-     
-    
+
+
 
       <!--Body-->
       <div class="modal-body">
@@ -55,24 +55,16 @@
                 </div>
 
               </div>
-              <div class="col-md-12">
-                <div class="form-floating mb-3">
-                  <input class="form-control" id="color" type="color" name="color">
-                  <label for="color" class="form-label">Color</label>
-                </div>
-              </div>
+
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+
             <button type="submit" class="btn btn-primary" id="btnAccion">Guardar</button>
           </div>
         </form>
       </div>
-
-
-
     </div>
     <!--/.Content-->
   </div>
@@ -87,15 +79,11 @@
     <!--Content-->
     <div class="modal-content">
       <!--Header-->
-     
-        <div class="modal-header bg-info">
-          <h5 class="modal-title" id="tituloedit">Registro de Eventos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      <div class="modal-header bg-info">
+        <h5 class="modal-title" id="tituloedit">Registro de Eventos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
-     
-    
-
       <!--Body-->
       <div class="modal-body">
 
@@ -128,13 +116,15 @@
                 </div>
 
               </div>
-         
+
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-danger" id="btnEliminaredit">Eliminar</button>
-            <button type="submit" class="btn btn-primary" id="btnAccionedit">Guardar</button>
+            <!--  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button> -->
+
+            <button type="button" class="btn btn-info" id="btnAsistir">Asistió</button>
+            <button type="button" class="btn btn-danger" id="btnEliminaredit">Eliminar Cita</button>
+            <button type="submit" class="btn btn-primary" id="btnAccionedit">Guardar Cita</button>
           </div>
         </form>
       </div>
@@ -142,4 +132,50 @@
     </div>
     <!--/.Content-->
   </div>
+</div>
+
+
+
+
+<div class="modal fade right  " id="modalAsistir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+
+      <div class="modal-header bg-info">
+        <h1 class="modal-title" id="tituloCita">Confirmar Cita</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+
+
+        <div class="modal-body">
+          <div style="justify-content: center; align-items: center;">
+
+            <h1 style="margin-left: 30%;">Paciente Asistio a su Cita</h1>
+          </div>
+
+        </div>
+      </div>
+      <div class="col" style="margin-left: -10%;">
+        <div class="modal-footer">
+
+          <button type="button" data-bs-dismiss="modal" routerLink="/menu/historia" class="boton-personalizado-4 ">
+            <mat-icon>add_circle</mat-icon>
+            <span> Nuevo Paciente</span>
+          </button>
+          <button type="button"  data-bs-dismiss="modal" routerLink="/menu/tabla-Historias-Clinicas" class="boton-personalizado-5">
+            <mat-icon>library_books</mat-icon>
+            Chequeo Odontologico
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!--/.Content-->
 </div>

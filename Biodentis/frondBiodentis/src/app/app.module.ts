@@ -34,6 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import {MatDialogModule} from '@angular/material/dialog';
+import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     TablaHistoriasClinicasComponent,
     MenuComponent,
     NavbarComponent,
-    CitaComponent
+    CitaComponent,
+    SeguimientoComponent
   ],
   imports: [
     BrowserModule,

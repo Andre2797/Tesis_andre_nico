@@ -1,7 +1,7 @@
 let frm = document.getElementById('formulario');
 let eliminar = document.getElementById('btnEliminar');
 let idedit = "";
-
+let citasnew;
 document.addEventListener('DOMContentLoaded', async function () {
 
   var request = new Request('http://localhost:3000/reservas', {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
 
-  const citasnew = citasinformato.map(item => {
+  citasnew = citasinformato.map(item => {
     const cita = {};
     cita.title = item.motivo
     fechahora = moment(item.fecha).format('YYYY-MM-DD HH:mm');
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   calendar.render();
-  document.querySelector("#formulario").addEventListener('submit', (e) => {
+  document.querySelector("#formulario").addEventListener('submit', async (e) => {
     e.preventDefault();
     const title = document.getElementById('title').value;
     const start = document.getElementById('start').value;
@@ -132,6 +132,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         ;
 
       console.log(JSON.stringify(bodyReserva))
+      $("#modalAbandonedCart").modal('hide');
+
+      location.reload();
+      calendar.refetchEvents()
     }
   });
 
@@ -159,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       bodyReserva.motivo = title;
 
 
-      var request = new Request('http://localhost:3000/cambioDatosReserva/'+idedit, {
+      var request = new Request('http://localhost:3000/cambioDatosReserva/' + idedit, {
         method: 'PUT',
 
         headers: {
@@ -169,15 +173,17 @@ document.addEventListener('DOMContentLoaded', async function () {
       });
       fetch(request).then(response => console.log(response))
         ;
+      $("#modalEdit").modal('hide');
 
-      console.log(JSON.stringify(bodyReserva))
+      location.reload();
+      calendar.refetchEvents()
     }
   });
 
 
 
-  document.querySelector("#btnEliminar").addEventListener('click', function () {
-    myModal.hide();
+  document.querySelector("#btnEliminaredit").addEventListener('click', function () {
+    $("#modalEdit").modal('hide');
     Swal.fire({
       title: 'Advertencia?',
       text: "Esta seguro de eliminar!",
@@ -188,26 +194,26 @@ document.addEventListener('DOMContentLoaded', async function () {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = base_url + 'Home/eliminar/' + document.getElementById('id').value;
-        const http = new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
-            const res = JSON.parse(this.responseText);
-            Swal.fire(
-              'Avisos?',
-              res.msg,
-              res.tipo
-            )
-            if (res.estado) {
-              calendar.refetchEvents();
-            }
+        var request = new Request('http://localhost:3000/eliminarReserva/' + idedit, {
+          method: 'GET',
+
+          headers: {
+            'Content-Type': 'application/json'
           }
-        }
+        });
+        fetch(request).then(response => console.log(response));
+
+
+        location.reload();
+        calendar.refetchEvents()
       }
     })
+  });
+
+  document.querySelector("#btnAsistir").addEventListener('click', function () {
+    $("#modalEdit").modal('hide');
+    $("#modalAsistir").modal('show');
+    console.log("abirir modal")
   });
 });
 
