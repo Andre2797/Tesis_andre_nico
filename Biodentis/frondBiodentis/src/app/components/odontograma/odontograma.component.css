@@ -62,3 +62,10 @@ canvas {
 .tableSize{
 	font-size: small;
 }
+
+.currencyinput {
+    border: 0px inset #ccc;
+}
+.currencyinput input {
+    border: 2;
+}

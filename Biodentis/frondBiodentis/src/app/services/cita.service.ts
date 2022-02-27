@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CitaService {
-  private URL='http://localhost:3000'
+  private URL='https://biodentisfront.herokuapp.com/messenger'
   constructor(private http:HttpClient) { }
 
   listaCitas(){

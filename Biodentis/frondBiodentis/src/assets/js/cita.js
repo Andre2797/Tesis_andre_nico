@@ -4,7 +4,7 @@ let idedit = "";
 let citasnew;
 document.addEventListener('DOMContentLoaded', async function () {
 
-  var request = new Request('http://localhost:3000/reservas', {
+  var request = new Request('https://biodentisfront.herokuapp.com/messenger/reservas', {
     method: 'GET',
 
     headers: {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     eventClick: async function (info) {
       console.log(info.event.start)
       console.log(moment(info.event.start).format('YYYY-MM-DD HH:mm'))
-      var request = new Request('http://localhost:3000/reservaedit/' + moment(info.event.start).format('YYYY-MM-DD HH:mm'), {
+      var request = new Request('https://biodentisfront.herokuapp.com/messenger/reservaedit/' + moment(info.event.start).format('YYYY-MM-DD HH:mm'), {
         method: 'GET',
 
         headers: {
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       bodyReserva.motivo = title;
 
 
-      var request = new Request('http://localhost:3000/crearReserva', {
+      var request = new Request('https://biodentisfront.herokuapp.com/messenger/crearReserva', {
         method: 'POST',
 
         headers: {
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       bodyReserva.motivo = title;
 
 
-      var request = new Request('http://localhost:3000/cambioDatosReserva/' + idedit, {
+      var request = new Request('https://biodentisfront.herokuapp.com/messenger/cambioDatosReserva/' + idedit, {
         method: 'PUT',
 
         headers: {
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        var request = new Request('http://localhost:3000/eliminarReserva/' + idedit, {
+        var request = new Request('https://biodentisfront.herokuapp.com/messenger/eliminarReserva/' + idedit, {
           method: 'GET',
 
           headers: {

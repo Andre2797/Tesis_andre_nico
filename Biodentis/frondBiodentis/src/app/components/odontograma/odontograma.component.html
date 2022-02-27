@@ -1,27 +1,28 @@
 <h1>Odontograma</h1>
-<div class="col-12 mt-1" style="margin-right: 20%;">			
-	<button  class="btn btn-secondary" for="borracha" id="borracha"><i class="fas fa-eraser"></i> Limpiar</button>
-	<button type="button" class="btn btn-secondary" id="saveBtn"><i class="fas fa-save"></i>  Guardar Odontograma</button>
-	<button type="button" class="btn btn-secondary" id="regTrat" disabled><i class="fas fa-save"></i> Registrar Tratamiento</button>
-<h1>{{id_odo}}</h1>
-<input type="text" id="id_odo" value="{{id_odo}}" disabled>
+<div class="col-12 mt-1" style="margin-right: 20%;">
+	<button class="btn btn-secondary" for="borracha" id="borracha"><i class="fas fa-eraser"></i> Limpiar</button>
+	<button type="button" class="btn btn-secondary" id="saveBtn"><i class="fas fa-save"></i> Guardar
+		Odontograma</button>
+	<button type="button" class="btn btn-secondary" id="btntratamiento" disabled routerLink="/menu/tratamiento" ><i class="fas fa-save"></i> Registrar
+		Tratamiento</button>
+
 </div>
 <div class="dark-mode">
-	
+
 	<div id="control" class="container">
 	</div>
 
-		<div id="canva-group">
-			<canvas id="camada1Odontograma"></canvas>
-			<canvas id="camada2Odontograma"></canvas>
-			<canvas id="camada3Odontograma"></canvas>
-			<canvas id="camada4Odontograma"></canvas>
+	<div id="canva-group">
+		<canvas id="camada1Odontograma"></canvas>
+		<canvas id="camada2Odontograma"></canvas>
+		<canvas id="camada3Odontograma"></canvas>
+		<canvas id="camada4Odontograma"></canvas>
 
-			<canvas id="camadaPincel"></canvas>
-		</div>
-	
+		<canvas id="camadaPincel"></canvas>
+	</div>
+
 	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="modalLabel">Adicionar procedimientos</h5>
@@ -79,11 +80,12 @@
 							<textarea rows="2" id="informacoesAdicionais" maxlength="5000"
 								class="form-control"></textarea>
 						</div>
+					
 						<div class="container">
 							<div class=" form-group d-inline   " style="text-align: center; box-sizing: revert;">
 								<a id="botaoAdicionar" class="form-control btn btn-secondary btnCorNovo "
 									style=" align-items: center;  margin-bottom: 15%; color: white;">
-									<i class="fas fa-plus"> Guardar</i>
+									<i class="fas fa-plus"> </i>Guardar
 								</a>
 
 							</div>
@@ -143,3 +145,8 @@
 	</div>
 
 </div>
+
+
+
+
+

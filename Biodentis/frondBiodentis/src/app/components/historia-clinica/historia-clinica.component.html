@@ -19,7 +19,7 @@
     </div>
     <br>
 
-    <div *ngIf="pacienteSave">
+    <div *ngIf="!pacienteSave">
         <form class="custom-form" [formGroup]="pacienteForm">
 
             <div class="row" style="margin: auto; height: auto; margin-top: -20px;">
@@ -218,7 +218,7 @@
         </form>
     </div>
 
-    <div *ngIf="!pacienteSave">
+    <div *ngIf="pacienteSave">
         <form class="custom-form" [formGroup]="pacienteForm">
 
             <div class="row" style="margin: auto; height: auto; margin-top: -20px;">

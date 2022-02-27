@@ -35,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FullCalendarModule } from 'primeng/fullcalendar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
+import { TratamientoComponent } from './components/tratamiento/tratamiento.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { SeguimientoComponent } from './components/seguimiento/seguimiento.compo
     MenuComponent,
     NavbarComponent,
     CitaComponent,
-    SeguimientoComponent
+    SeguimientoComponent,
+    TratamientoComponent
   ],
   imports: [
     BrowserModule,

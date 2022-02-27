@@ -1045,23 +1045,28 @@ document.addEventListener('DOMContentLoaded', () => {
         let result = querystring.split("/")
 
 
-        let id_pac = result[5]
-        let inputValue = document.getElementById("id_odo").value;
+        let id_odo = result[5]
+     
         bodyDig.diagnostico = JSON.parse(diagnostico);
-        bodyDig.paciente = id_pac;
-        bodyDig.odontograma = inputValue;
+        bodyDig.odontograma = id_odo;
+        
         console.log(bodyDig)
-        var request = new Request('http://localhost:3000/crearDiagnostico', {
+        var request = new Request('https://biodentisfront.herokuapp.com/messenger/crearDiagnostico', {
             method: 'POST',
             
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'cors-anywhere'
+
             },
             body: JSON.stringify(bodyDig),
         });
         fetch(request).then(response => console.log(response))
             ;
         console.log(JSON.stringify(bodyDig))
+        document.querySelector("#btntratamiento").disabled = false;
+        console.log(id_odo)
+        localStorage.setItem("odontograma", id_odo);
     }
 
     /**

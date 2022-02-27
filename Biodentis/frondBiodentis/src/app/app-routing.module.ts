@@ -13,6 +13,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CitaComponent } from './components/cita/cita.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
+import { TratamientoComponent } from './components/tratamiento/tratamiento.component';
 
 const routes: Routes = [
   
@@ -52,8 +53,13 @@ const routes: Routes = [
      
     },
     {
-      path:'seguimiento',
+      path:'seguimiento/:id',
       component:SeguimientoComponent,
+     
+    },
+    {
+      path:'tratamiento',
+      component:TratamientoComponent,
      
     },
     {

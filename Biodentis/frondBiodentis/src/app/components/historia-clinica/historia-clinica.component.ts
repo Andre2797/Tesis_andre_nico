@@ -8,6 +8,7 @@ import { Historia } from "./IHistoria";
 import { NotificationService } from 'src/app/services/notification.service';
 import $, { param } from 'jquery'
 import "jquery-datetimepicker";
+import { TratamientoService } from '../../services/tratamiento.service';
 
 
 @Component({
@@ -50,7 +51,8 @@ export class HistoriaClinicaComponent implements OnInit {
   historiaForm;
 
   public odontograma = {
-    fechaOdonto:Date.now()
+    fechaOdonto: Date.now(),
+    paciente: ""
 
   }
 
@@ -62,7 +64,7 @@ export class HistoriaClinicaComponent implements OnInit {
   public pacienteSave: any = [];
   public sexoFEdit = '';
   public sexoHEdit = '';
-  constructor(private pacienteService: PacienteService, private odoService: OdontogramaService
+  constructor(private pacienteService: PacienteService, private odoService: OdontogramaService, private trataService: TratamientoService
     , private router: Router, private formBuilder: FormBuilder, private notifyService: NotificationService,
     private route: ActivatedRoute) {
     console.log(this.route.snapshot.params.id);
@@ -164,23 +166,31 @@ export class HistoriaClinicaComponent implements OnInit {
     return $("#edad_input").val(Math.floor(((fechaActual - fechaNace) / (1000 * 60 * 60 * 24) / 365)));
 
   }
+  public seguimiento = {
+    fecha: new Date().toISOString().slice(0, 10),
+    total: "",
+    abono: "",
+    saldo: "",
+    paciente: ""
 
+  }
 
-  newPaciente() {
+  id_paciente
+ async newPaciente() {
     console.log(this.pacienteForm.value)
 
     if (this.pacienteForm.valid) {
 
-      this.pacienteService.crearPaciente(this.pacienteForm.value)
+    await  this.pacienteService.crearPaciente(this.pacienteForm.value)
         .subscribe(
           res => {
             console.log(res)
             //this.router.navigate(['/historia'])
+            this.id_paciente = res._id
             this.edited = false;
-
-            return false;
-
-
+            this.seguimiento.paciente = this.id_paciente;
+            console.log(this.seguimiento.paciente)
+            this.newSeguimiento()
           },
           err => console.log(err)
         )
@@ -194,20 +204,40 @@ export class HistoriaClinicaComponent implements OnInit {
   }
 
 
+  async newSeguimiento (){
+    await this.trataService.crearSeguimiento(this.seguimiento).subscribe(
+
+      res2 => {
+        console.log(res2)
+
+      }, err2 => console.log(err2)
+    )
+  }
+
+
+
+
+  id_odontograma;
 
   newHiatoria() {
 
     if (this.historiaForm.valid) {
-      this.historiaForm.setValue({ paciente: String(this.pacienteForm.get('nombre')?.value) });
+      this.historiaForm.controls['paciente'].setValue(this.id_paciente);
 
       this.pacienteService.crearHistoria(this.historiaForm.value)
         .subscribe(
           res => {
             console.log(res)
+            this.odontograma.paciente = this.id_paciente
             this.odoService.crearOdontograma(this.odontograma).subscribe(
-              res2 => { console.log(res2) }, err2 => console.log(err2)
+
+              res2 => {
+                console.log(res2)
+                this.id_odontograma = res2._id
+                this.router.navigate(['/menu/odontograma/' + this.id_odontograma])
+              }, err2 => console.log(err2)
             )
-            this.router.navigate(['/odontograma'])
+
 
 
           },

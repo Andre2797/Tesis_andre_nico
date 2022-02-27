@@ -3,6 +3,8 @@ import { PacienteService } from 'src/app/services/paciente.service';
 import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Paciente } from '../historia-clinica/IPaciente';
 import { OdontogramaService } from 'src/app/services/odontograma.service';
+import { Router } from '@angular/router';
+import { TratamientoService } from '../../services/tratamiento.service';
 interface IPaginate {
   itemsPerPage: number[],
   currentPage: number,
@@ -29,7 +31,8 @@ export class TablaHistoriasClinicasComponent implements OnInit {
     totalItems: this.count
   }
 
-  constructor(private pacienteService: PacienteService) {
+  constructor(private pacienteService: PacienteService,private odoService: OdontogramaService,private seguimientoService: TratamientoService
+    , private router: Router) {
 
 
   }
@@ -96,5 +99,39 @@ export class TablaHistoriasClinicasComponent implements OnInit {
 
 
 
+  }
+
+  public odontograma = {
+    fechaOdonto:Date.now(),
+    paciente:""
+
+  }
+  
+  id_odontograma;
+  newOdo(){
+    console.log(this.paciente)
+    this.paciente.pac.forEach(element => {
+      console.log(element._id)
+        this.odontograma.paciente=element._id
+    });
+  
+    this.odoService.crearOdontograma(this.odontograma).subscribe(
+
+      res2 => { console.log(res2)
+        this.id_odontograma=res2._id
+        this.router.navigate(['/menu/odontograma/'+this.id_odontograma])
+       }, err2 => console.log(err2)
+    )
+  }
+
+  newSeguimiento(){
+    console.log(this.paciente)
+    let idpac=""
+    this.paciente.pac.forEach(element => {
+      console.log(element._id)
+        idpac=element._id
+    });
+  
+    this.router.navigate(['/menu/seguimiento/'+idpac])
   }
 }

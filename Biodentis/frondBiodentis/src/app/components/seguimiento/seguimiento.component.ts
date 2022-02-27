@@ -1,15 +1,234 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PacienteService } from '../../services/paciente.service';
+import { OdontogramaService } from '../../services/odontograma.service';
+import { TratamientoService } from '../../services/tratamiento.service';
+import * as moment from 'moment';
+import { NotificationService } from '../../services/notification.service';
 
+
+
+interface IPaginate {
+  itemsPerPage: number[],
+  currentPage: number,
+  totalItems: number
+}
 @Component({
   selector: 'app-seguimiento',
   templateUrl: './seguimiento.component.html',
   styleUrls: ['./seguimiento.component.css']
 })
 export class SeguimientoComponent implements OnInit {
+  public odo: any = [];
+  public page = 1;
+  public count = 0;
+  public tableSize = 1;
+  public tableSizes = [3, 6, 9, 12];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  public paginate: IPaginate = {
+    itemsPerPage: [this.tableSize],
+    currentPage: this.page,
+    totalItems: this.count
   }
+  constructor(private pacienteService: PacienteService, private odoService: OdontogramaService, private seguimientoService: TratamientoService
+    , private router: Router, private route: ActivatedRoute,private notifyService: NotificationService) {
+
+  }
+  firstParam
+  seguimiento
+  fechaseg
+  total = 0
+  saldo = 0
+  abono = 0
+  segumientoupdate = {
+    total: '',
+    saldo: '',
+    abono: ''
+  };
+  tratmientoupdate={
+    saldo: '',
+    abono: ''
+  }
+  arryatratamientos = []
+  id_diag: any = [];
+  ngOnInit(): void {
+    this.firstParam = this.route.snapshot.paramMap.get('id');
+    this.fetchSeguimiento()
+
+  }
+
+  fetchSeguimiento() {
+
+    this.seguimientoService.segumineto(this.firstParam)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.seguimiento = res;
+          this.fechaseg = moment(this.seguimiento.fecha).format('YYYY/MM/DD');
+          this.seguimiento.tratamientos.forEach(element => {
+            this.total = this.total + Number(element.costo)
+            this.segumientoupdate.total = String(this.total)
+           
+
+          });
+
+        },
+        err => console.log(err)
+      )
+
+  }
+public saldofinal=[]
+  cal() {
+    let array_input: any = [];
+    let array_input_reduce: any = [];
+    console.log("ENTREE")
+   
+    let saldo: any = [];
+    this.arryatratamientos.push(this.tratmientoupdate)
+    try {
+      console.log(this.seguimiento.tratamientos)
+
+
+      for (let i = 0; i < this.seguimiento.tratamientos.length; i++) {
+
+        var a: any = parseInt((<HTMLInputElement>document.getElementById("abono" + i)).value) || 0;
+        var b: any = parseInt((<HTMLInputElement>document.getElementById("abono" + i)).value) || 0;
+
+
+        array_input.push(a)
+        array_input_reduce.push(b)
+
+        localStorage.setItem("item", array_input)
+        var tabono: any = (<HTMLInputElement>document.getElementById("totalabono"))
+
+        var leer = localStorage.getItem("item").split(',')
+        console.log(leer)
+        console.log("tipo de ", typeof (leer))
+        leer.forEach(element => {
+          console.log(typeof (parseInt(element)))
+          var num = 0
+          num = num + parseInt(element)
+         
+
+        });
+
+        let sum = 0;
+        for (let i = 0; i < leer.length; i++) {
+          sum += Number(leer[i]);
+         
+        }
+        
+
+        tabono.value = sum
+        this.segumientoupdate.abono = tabono.value
+
+
+
+
+      }
+
+
+
+    } catch (e) { }
+
+    for (let j = 0; j < this.seguimiento.tratamientos.length; j++) {
+      const element1 = this.seguimiento.tratamientos[j];
+      console.log("COSTOS",element1.costo)
+      for (let k = 0; k < leer.length; k++) {
+        const element2 = leer[j];
+        console.log("ABONO",element2)
+
+        var reduce = 0;
+        reduce = Number(element1.costo) - Number(element2)
+        console.log("RESTA",reduce)
+        break;
+      }
+     
+      saldo.push(reduce);
+
+    }
+
+    console.log("SALDO", saldo)
+    this.saldofinal=saldo
+    let sum2 = 0;
+    var tsaldo: any = (<HTMLInputElement>document.getElementById("totalsaldo"))
+    for (let i = 0; i < saldo.length; i++) {
+      sum2 += Number(saldo[i]);
+    }
+    console.log(sum2);
+    tsaldo.value = sum2
+    this.segumientoupdate.saldo = tsaldo.value
+
+  
+  }
+  calsaldo() {
+    console.log("ENTREE")
+    let array_input_saldo: any = [];
+    try {
+      for (let i = 0; i < this.seguimiento.tratamientos.length; i++) {
+
+        var a: any = parseInt((<HTMLInputElement>document.getElementById("saldo" + i)).value) || 0;
+        console.log(a)
+        array_input_saldo.push(a)
+
+        localStorage.setItem("saldo", array_input_saldo)
+        var tsaldo: any = (<HTMLInputElement>document.getElementById("totalsaldo"))
+        var leer2 = localStorage.getItem("saldo").split(',')
+        console.log(leer2)
+        console.log("tipo de ", typeof (leer2))
+        leer2.forEach(element => {
+          console.log(typeof (parseInt(element)))
+          var num = 0
+          num = num + parseInt(element)
+
+
+        });
+
+        let sum2 = 0;
+
+        for (let i = 0; i < leer2.length; i++) {
+          sum2 += Number(leer2[i]);
+        }
+        console.log(sum2);
+        tsaldo.value = sum2
+
+
+        this.segumientoupdate.saldo = tsaldo.value
+
+      }
+
+    } catch (e) { }
+  }
+
+
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.fetchSeguimiento();
+  }
+
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.fetchSeguimiento();
+  }
+
+
+
+  actualizarSeguimiento() {
+    console.log(this.segumientoupdate)
+    this.seguimientoService.actualizarSeguimiento(this.segumientoupdate, this.firstParam)   .subscribe(
+      res => {
+        console.log(res)
+     
+        this.notifyService.showSuccess("Datos del paciente actulizados exitosamente", "Actualización de campos")
+
+
+
+      },
+      err => console.log(err)
+    )
+  }
+
 
 }

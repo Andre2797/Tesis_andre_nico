@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PacienteService {
-  private URL='http://localhost:3000'
+  private URL='https://biodentisfront.herokuapp.com/messenger'
   constructor(private http:HttpClient, ) { }
   crearPaciente(paciente: any): Observable<any> {
     console.log(paciente)
@@ -48,7 +48,7 @@ export class PacienteService {
      
     return this.http.get(this.URL + '/pacientepag/'+page+'/'+num, {headers: headers});
   }
-  paciente(id:String){
+  paciente(id:string){
     let headers = new HttpHeaders().set('Content-Type','application/json');
      
     return this.http.get(this.URL + '/paciente/'+id, {headers: headers});
