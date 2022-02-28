@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CitaComponent } from './components/cita/cita.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { TratamientoComponent } from './components/tratamiento/tratamiento.component';
+import { ProcedimientosComponent } from './components/procedimientos/procedimientos.component';
 
 const routes: Routes = [
   
@@ -55,6 +56,11 @@ const routes: Routes = [
     {
       path:'seguimiento/:id',
       component:SeguimientoComponent,
+     
+    },
+    {
+      path:'procediminetos/:id',
+      component:ProcedimientosComponent,
      
     },
     {

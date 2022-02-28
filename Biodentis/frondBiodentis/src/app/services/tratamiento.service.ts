@@ -48,6 +48,15 @@ export class TratamientoService {
     
   }
 
+  actualizarTratamiento(tratamiento: any, id:any): Observable<any> {
+    console.log(tratamiento);
+    console.log(id);
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.put(this.URL + '/actualizarTratamiento/'+ id, tratamiento, {headers: headers});
+    
+  }
+
 
 
 }

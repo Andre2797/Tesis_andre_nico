@@ -42,10 +42,6 @@ export class TablaHistoriasClinicasComponent implements OnInit {
 
   }
 
-
-
-
-
   fetchPacientes() {
     this.pacienteService.pacientes(this.page, 3)
       .subscribe(
@@ -108,12 +104,10 @@ export class TablaHistoriasClinicasComponent implements OnInit {
   }
   
   id_odontograma;
-  newOdo(){
-    console.log(this.paciente)
-    this.paciente.pac.forEach(element => {
-      console.log(element._id)
-        this.odontograma.paciente=element._id
-    });
+  newOdo(id_pac){
+   
+        this.odontograma.paciente=id_pac
+    
   
     this.odoService.crearOdontograma(this.odontograma).subscribe(
 
@@ -134,4 +128,15 @@ export class TablaHistoriasClinicasComponent implements OnInit {
   
     this.router.navigate(['/menu/seguimiento/'+idpac])
   }
+
+  newProcedimiento(){
+    let idpac=""
+    this.paciente.pac.forEach(element => {
+      console.log(element._id)
+        idpac=element._id
+    });
+  
+    this.router.navigate(['/menu/procediminetos/'+idpac])
+  }
+
 }

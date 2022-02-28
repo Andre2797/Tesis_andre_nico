@@ -31,7 +31,7 @@ export class SeguimientoComponent implements OnInit {
     totalItems: this.count
   }
   constructor(private pacienteService: PacienteService, private odoService: OdontogramaService, private seguimientoService: TratamientoService
-    , private router: Router, private route: ActivatedRoute,private notifyService: NotificationService) {
+    , private router: Router, private route: ActivatedRoute, private notifyService: NotificationService) {
 
   }
   firstParam
@@ -45,12 +45,14 @@ export class SeguimientoComponent implements OnInit {
     saldo: '',
     abono: ''
   };
-  tratmientoupdate={
+  tratmientoupdate = {
     saldo: '',
     abono: ''
   }
   arryatratamientos = []
   id_diag: any = [];
+  saldotra:any=[]
+  abonotra:any=[]
   ngOnInit(): void {
     this.firstParam = this.route.snapshot.paramMap.get('id');
     this.fetchSeguimiento()
@@ -68,7 +70,7 @@ export class SeguimientoComponent implements OnInit {
           this.seguimiento.tratamientos.forEach(element => {
             this.total = this.total + Number(element.costo)
             this.segumientoupdate.total = String(this.total)
-           
+
 
           });
 
@@ -77,12 +79,12 @@ export class SeguimientoComponent implements OnInit {
       )
 
   }
-public saldofinal=[]
+  public saldofinal = []
   cal() {
     let array_input: any = [];
     let array_input_reduce: any = [];
     console.log("ENTREE")
-   
+
     let saldo: any = [];
     this.arryatratamientos.push(this.tratmientoupdate)
     try {
@@ -103,21 +105,23 @@ public saldofinal=[]
 
         var leer = localStorage.getItem("item").split(',')
         console.log(leer)
+        
         console.log("tipo de ", typeof (leer))
         leer.forEach(element => {
           console.log(typeof (parseInt(element)))
           var num = 0
           num = num + parseInt(element)
-         
+          this.abonotra.push(String(element))
+
 
         });
 
         let sum = 0;
         for (let i = 0; i < leer.length; i++) {
           sum += Number(leer[i]);
-         
+
         }
-        
+
 
         tabono.value = sum
         this.segumientoupdate.abono = tabono.value
@@ -133,33 +137,34 @@ public saldofinal=[]
 
     for (let j = 0; j < this.seguimiento.tratamientos.length; j++) {
       const element1 = this.seguimiento.tratamientos[j];
-      console.log("COSTOS",element1.costo)
+      console.log("COSTOS", element1.costo)
       for (let k = 0; k < leer.length; k++) {
         const element2 = leer[j];
-        console.log("ABONO",element2)
+        console.log("ABONO", element2)
 
         var reduce = 0;
         reduce = Number(element1.costo) - Number(element2)
-        console.log("RESTA",reduce)
+        console.log("RESTA", reduce)
         break;
       }
-     
+
       saldo.push(reduce);
 
     }
 
     console.log("SALDO", saldo)
-    this.saldofinal=saldo
+    this.saldofinal = saldo
     let sum2 = 0;
     var tsaldo: any = (<HTMLInputElement>document.getElementById("totalsaldo"))
     for (let i = 0; i < saldo.length; i++) {
       sum2 += Number(saldo[i]);
+      this.saldotra.push(saldo[i])
     }
     console.log(sum2);
     tsaldo.value = sum2
     this.segumientoupdate.saldo = tsaldo.value
 
-  
+
   }
   calsaldo() {
     console.log("ENTREE")
@@ -217,17 +222,44 @@ public saldofinal=[]
 
   actualizarSeguimiento() {
     console.log(this.segumientoupdate)
-    this.seguimientoService.actualizarSeguimiento(this.segumientoupdate, this.firstParam)   .subscribe(
+   for (let i = 0; i < this.seguimiento.tratamientos.length; i++) {
+     const element = this.seguimiento.tratamientos[i];
+     console.log(element)
+     for (let j = 0; j < this.saldofinal.length; j++) {
+       const element2 = this.saldofinal[i];
+       element.saldo=String(element2)
+       
+       
+     }
+     console.log("CAMBIADO",element)
+
+     
+   }
+    console.log("TRATAMIENTO ACTUALIZAR",this.seguimiento.tratamientos)
+
+     this.seguimientoService.actualizarSeguimiento(this.segumientoupdate, this.firstParam).subscribe(
       res => {
         console.log(res)
-     
-        this.notifyService.showSuccess("Datos del paciente actulizados exitosamente", "Actualización de campos")
 
+        this.seguimiento.tratamientos.forEach(element => {
+
+          this.seguimientoService.actualizarTratamiento(element,element._id).subscribe(
+            res => {
+              console.log(res)
+              this.notifyService.showSuccess("Datos del paciente actulizados exitosamente", "Actualización de campos")
+
+             },
+              err => console.log(err)
+            ) 
+          
+        });
+
+       
 
 
       },
       err => console.log(err)
-    )
+    ) 
   }
 
 

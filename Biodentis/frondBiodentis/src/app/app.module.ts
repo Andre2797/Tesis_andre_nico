@@ -36,6 +36,7 @@ import { FullCalendarModule } from 'primeng/fullcalendar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { TratamientoComponent } from './components/tratamiento/tratamiento.component';
+import { ProcedimientosComponent } from './components/procedimientos/procedimientos.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { TratamientoComponent } from './components/tratamiento/tratamiento.compo
     NavbarComponent,
     CitaComponent,
     SeguimientoComponent,
-    TratamientoComponent
+    TratamientoComponent,
+    ProcedimientosComponent
   ],
   imports: [
     BrowserModule,
