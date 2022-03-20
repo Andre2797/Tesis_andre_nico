@@ -9,7 +9,7 @@ export class OdontogramaService {
 
   
 
-  private URL='https://biodentisfront.herokuapp.com/messenger'
+  private URL='https://biodentis.herokuapp.com/messenger'
   constructor(private http:HttpClient, ) { }
   crearOdontograma (odontograma: any): Observable<any> {
     console.log(odontograma)

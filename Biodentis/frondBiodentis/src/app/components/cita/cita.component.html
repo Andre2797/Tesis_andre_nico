@@ -117,6 +117,31 @@
 
               </div>
 
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <select class="form-control" id="sucu" 
+                  >
+                  <option value="">-- seleccione una opción --</option>
+                  <option  *ngFor="let su of sucu" value="{{su._id}}">{{su.nombre}}</option>
+                </select>
+                  <label for="" class="form-label">Sucursales</label>
+                </div>
+
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <select
+                  class="form-control" id="odo" 
+                  >
+                  <option value="">-- seleccione una opción --</option>
+                  <option *ngFor="let odo of odos" value="{{odo._id}}">{{odo.nombre}} {{odo.apellido}}</option>
+                </select>
+                  <label for="" class="form-label">Odontologos</label>
+                </div>
+
+              </div>
+
             </div>
           </div>
           <div class="modal-footer">

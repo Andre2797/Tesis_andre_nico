@@ -1051,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bodyDig.odontograma = id_odo;
         
         console.log(bodyDig)
-        var request = new Request('https://biodentisfront.herokuapp.com/messenger/crearDiagnostico', {
+        var request = new Request('https://biodentis.herokuapp.com/messenger/crearDiagnostico', {
             method: 'POST',
             
             headers: {

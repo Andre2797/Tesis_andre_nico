@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private URL='https://biodentisfront.herokuapp.com/messenger'
+  private URL='https://biodentis.herokuapp.com/messenger'
  
  
   constructor(private http:HttpClient, 

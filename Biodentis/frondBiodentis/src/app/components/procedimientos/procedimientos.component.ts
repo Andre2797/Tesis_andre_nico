@@ -13,6 +13,9 @@ export class ProcedimientosComponent implements OnInit {
   constructor(private pacienteService: PacienteService,private route: ActivatedRoute,private diagnosticoService: OdontogramaService) { }
   firstParam
   paciente
+  diagnostico
+  general
+  tratamiento
   ngOnInit(): void {
     this.firstParam = this.route.snapshot.paramMap.get('id');
     this.fetchPaciente()
@@ -30,6 +33,12 @@ export class ProcedimientosComponent implements OnInit {
           this.diagnosticoService.diagnotico(element._id) .subscribe(
             res => {
               console.log(res);
+              this.general=res
+            this.general.forEach(element => {
+              this.diagnostico=element.diagnostico
+              this.tratamiento=element.tratamientos
+
+            });
             },
             err => console.log(err)
           )

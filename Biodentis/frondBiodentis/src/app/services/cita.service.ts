@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CitaService {
-  private URL='https://biodentisfront.herokuapp.com/messenger'
+  private URL='https://biodentis.herokuapp.com/messenger'
   constructor(private http:HttpClient) { }
 
   listaCitas(){
@@ -13,6 +13,22 @@ export class CitaService {
     let headers = new HttpHeaders().set('Content-Type','application/json');
      
     return this.http.get(this.URL + '/reservas', {headers: headers});
+
+  }
+
+  listaSucu(){
+
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.get(this.URL + '/sucursales', {headers: headers});
+
+  }
+
+  listaOdo(){
+
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+     
+    return this.http.get(this.URL + '/odos', {headers: headers});
 
   }
 }

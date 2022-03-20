@@ -20,7 +20,8 @@ export class CitaComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.listarSucursal()
+    this.listarOdontologo()
 
 
   }
@@ -38,7 +39,33 @@ export class CitaComponent implements OnInit {
         err => console.log(err)
       )
   }
+  public sucu
+  public odos
 
+  listarSucursal() {
+    this.citaService.listaSucu()
+      .subscribe(
+        res => {
+          console.log(res);
+          this.sucu = res
+
+        },
+        err => console.log(err)
+      )
+  }
+
+  listarOdontologo() {
+    this.citaService.listaOdo()
+      .subscribe(
+        res => {
+          console.log(res);
+          this.odos = res
+
+        },
+        err => console.log(err)
+      )
+
+  }
 
 }
 

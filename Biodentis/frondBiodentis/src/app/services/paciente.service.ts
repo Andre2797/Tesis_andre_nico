@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PacienteService {
-  private URL='https://biodentisfront.herokuapp.com/messenger'
+  private URL='https://biodentis.herokuapp.com/messenger'
   constructor(private http:HttpClient, ) { }
   crearPaciente(paciente: any): Observable<any> {
     console.log(paciente)
